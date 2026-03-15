@@ -137,9 +137,9 @@ def test_boxes():
         Token("LeftRowBox", "\\(", 0),
         Token("BoxInputEscape", "\\*", 2),
         Token("Symbol", "RowBox", 4),
-        Token("RawLeftBracket", "[", 10),
+        Token("OpenSquare", "[", 10),
         Token("Symbol", "a", 11),
-        Token("RawRightBracket", "]", 12),
+        Token("CloseSquare", "]", 12),
         Token("RightRowBox", "\\)", 13),
     ]
 

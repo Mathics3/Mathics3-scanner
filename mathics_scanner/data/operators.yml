@@ -4731,7 +4731,7 @@ Pattern:
   FullForm: Pattern[symb, expr]
   arity: Binary
   affix: Infix
-  associativity: "unknown"
+  associativity: right
   meaningful: true
   # comments:
 

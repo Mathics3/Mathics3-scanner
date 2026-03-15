@@ -178,12 +178,6 @@ MATHICS3_TAG_TO_CODETOKENIZE: Final[Dict[str, str]] = {
     "Postfix": "SlashSlash",
     "Prefix": "At",
     "Put": "GreaterGreater",
-    "RawComma": "Comma",
-    "RawLeftBrace": "OpenCurly",
-    "RawLeftBracket": "OpenSquare",
-    "RawRightBrace": "CloseCurly",
-    "RawRightBracket": "CloseSquare",
-    "RightRowBox": "CloseParen",
     "Rule": "MinusGreater",
     "RuleDelayed": "ColonGreater",
     "ReplaceAll": "SlashDot",
@@ -233,6 +227,7 @@ def init_module():
 
     tokens: List[Tuple[str, ...]] = [
         ("BoxInputEscape", r" \\[*]"),
+        ("Comma", r" \, "),
         ("Definition", r"\? "),
         ("Get", r"\<\<"),
         ("QuestionQuestion", r"\?\? "),
@@ -242,14 +237,13 @@ def init_module():
         ("Pattern", pattern_pattern),
         ("Put", r"\>\>"),
         ("PutAppend", r"\>\>\>"),
-        ("RawComma", r" \, "),
         ("LessBar", r" \<\| "),
         ("OpenCurly", r" \{ "),
-        ("RawLeftBracket", r" \[ "),
         ("OpenParen", r" \( "),
+        ("OpenSquare", r" \[ "),
         ("BarGreater", r" \|\> "),
         ("CloseCurly", r" \} "),
-        ("RawRightBracket", r" \] "),
+        ("CloseSquare", r" \] "),
         ("CloseParen", r" \) "),
         ("Slot", slot_pattern),
         ("SlotSequence", r"\#\#\d*"),
@@ -444,7 +438,7 @@ def init_module():
         ")": ("CloseParen",),
         "*": ("NonCommutativeMultiply", "TimesBy", "Times"),
         "+": ("Increment", "AddTo", "Plus"),
-        ",": ("RawComma",),
+        ",": ("Comma",),
         "-": (
             # Note that "Minus" has to come last.
             "Decrement",
@@ -508,7 +502,7 @@ def init_module():
             "PatternTest",
         ),
         "@": ("ApplyList", "Apply", "Composition", "Prefix"),
-        "[": ("RawLeftBracket",),
+        "[": ("OpenSquare",),
         "\\": (
             # Note that "RawBackSlash" has to come last.
             "BoxInputEscape",
@@ -526,7 +520,7 @@ def init_module():
             "FormBox",
             "RawBackslash",
         ),
-        "]": ("RawRightBracket",),
+        "]": ("CloseSquare",),
         "^": (
             # Note that "Power" has to come last.
             "UpSetDelayed",
