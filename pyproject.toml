@@ -8,7 +8,7 @@ requires = [
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "Mathics_Scanner"
+name = "Mathics3-Scanner"
 description = "Character Tables and Tokenizer for Mathics3 and the Wolfram Language."
 dependencies = [
     "PyYAML",     # Used in mathics3-generate-json-table
