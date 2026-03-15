@@ -179,11 +179,6 @@ MATHICS3_TAG_TO_CODETOKENIZE: Final[Dict[str, str]] = {
     "Prefix": "At",
     "Put": "GreaterGreater",
     "RawComma": "Comma",
-    "RawLeftBrace": "OpenCurly",
-    "RawLeftBracket": "OpenSquare",
-    "RawRightBrace": "CloseCurly",
-    "RawRightBracket": "CloseSquare",
-    "RightRowBox": "CloseParen",
     "Rule": "MinusGreater",
     "RuleDelayed": "ColonGreater",
     "ReplaceAll": "SlashDot",
@@ -245,11 +240,11 @@ def init_module():
         ("RawComma", r" \, "),
         ("LessBar", r" \<\| "),
         ("OpenCurly", r" \{ "),
-        ("RawLeftBracket", r" \[ "),
         ("OpenParen", r" \( "),
+        ("OpenSquare", r" \[ "),
         ("BarGreater", r" \|\> "),
         ("CloseCurly", r" \} "),
-        ("RawRightBracket", r" \] "),
+        ("CloseSquare", r" \] "),
         ("CloseParen", r" \) "),
         ("Slot", slot_pattern),
         ("SlotSequence", r"\#\#\d*"),
@@ -508,7 +503,7 @@ def init_module():
             "PatternTest",
         ),
         "@": ("ApplyList", "Apply", "Composition", "Prefix"),
-        "[": ("RawLeftBracket",),
+        "[": ("OpenSquare",),
         "\\": (
             # Note that "RawBackSlash" has to come last.
             "BoxInputEscape",
@@ -526,7 +521,7 @@ def init_module():
             "FormBox",
             "RawBackslash",
         ),
-        "]": ("RawRightBracket",),
+        "]": ("CloseSquare",),
         "^": (
             # Note that "Power" has to come last.
             "UpSetDelayed",
