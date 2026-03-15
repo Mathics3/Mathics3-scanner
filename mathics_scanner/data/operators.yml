@@ -4731,7 +4731,12 @@ Pattern:
   FullForm: Pattern[symb, expr]
   arity: Binary
   affix: Infix
-  associativity: right
+  # Should be right associative,
+  # but something in implicit multiplication
+  # is messing things up? In:
+  #   ConditionalExpression[expr1_, cond_]  expr2_
+  # ?
+  associativity: "unknown"
   meaningful: true
   # comments:
 

@@ -45,4 +45,4 @@ jobs:
         cd ..
     - name: Run Mathics3 tests
       run: |
-        remake -x check-mathics
+        remake -x check-mathics3
