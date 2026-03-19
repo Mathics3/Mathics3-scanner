@@ -135,7 +135,7 @@ def test_boxes():
     ]
     assert tokens("\\(\\*RowBox[a]\\)") == [
         Token("LeftRowBox", "\\(", 0),
-        Token("BoxInputEscape", "\\*", 2),
+        Token("LinearSyntaxStar", "\\*", 2),
         Token("Symbol", "RowBox", 4),
         Token("OpenSquare", "[", 10),
         Token("Symbol", "a", 11),
