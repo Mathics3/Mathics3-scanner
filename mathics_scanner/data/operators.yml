@@ -4457,6 +4457,9 @@ NumberPrecisionPostfix:
   meaningful: true
   # comments: Specifies the precision of "number" to be $MachinePrecision. Any magnitude must come after `."
 
+# How one determines when the ":" operator is a "Optional" or "Pattern" is a mystery.
+# But apparently they have difference precedences, and cannot be combined or thought
+# of as one operator.
 Optional:
   precedence: 140
   WolframLanguageData: 64
@@ -4466,10 +4469,17 @@ Optional:
   # N-tokens: {}
   # L-tokens: {":"}
   # O-tokens: {}
-  # usage: "patt : expr"
-  FullForm: Optional[patt, expr]
+  # usage: "symb : expr"
+  FullForm: Pattern[symb, expr]
   arity: Binary
   affix: Infix
+  # Should be right associative,
+  # but something in implicit multiplication
+  # is messing things up? In:
+  #   ConditionalExpression[expr1_, cond_]  expr2_
+  # ?
+  # Possibly this is due to a confusion between
+  # whether the ":" represents Optional or Pattern
   associativity: "unknown"
   meaningful: true
   # comments:
@@ -4718,6 +4728,9 @@ PartialUnderscriptBox:
   meaningful: false
   # comments: This operator is an invisible Unicode character and is used in the layout of displayed expressions.
 
+# How one determines when ":" is an operator is a Pattern or Optional, is a mystery.
+# But apparently they have difference precedences, and cannot be combined or thought
+# of as one operator.
 Pattern:
   precedence: 150
   WolframLanguageData: 64
@@ -5133,6 +5146,25 @@ RawBackquote:
   associativity: null
   meaningful: true
   # comments: Specifies the accuracy (in number of digits to the right of decimal) of "number", where s is a positive decimal expressed without using ^^ or `. A magnitude must come after ``.
+
+# QuestionQuestion precedence needs to be less than Definition "?" which is
+# 5000 so that we don't treat ?? as ? ?.
+QuestionQuestion:
+  precedence: 5001  # Seems a bit extreme. This is the old Mathics data
+  WolframLanguageData: None
+  WolframLanguageData-corrected: None
+  UnicodeCharacters.tr: None
+  UnicodeCharacters-corrected.tr: None
+  # N-tokens: None
+  # L-tokens: None
+  # O-tokens: None
+  usage: "??Times"
+  FullForm: None
+  arity: Unary
+  affix: Prefix
+  associativity: null
+  meaningful: true
+  # comments: None
 
 Repeated:
   precedence: 170

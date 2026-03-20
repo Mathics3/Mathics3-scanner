@@ -5,10 +5,11 @@ Tests translation from strings to sequences of tokens.
 
 import random
 import sys
-from typing import List
+from typing import Dict, Final, List, Tuple
 
 import pytest
 
+from mathics_scanner.characters import OPERATOR_DATA
 from mathics_scanner.errors import (
     EscapeSyntaxError,
     IncompleteSyntaxError,
@@ -17,7 +18,11 @@ from mathics_scanner.errors import (
 )
 from mathics_scanner.feed import MultiLineFeeder, SingleLineFeeder
 from mathics_scanner.location import ContainerKind
-from mathics_scanner.tokeniser import Token, Tokeniser, is_symbol_name
+from mathics_scanner.tokeniser import LITERAL_TOKENS, Token, Tokeniser, is_symbol_name
+
+OPERATOR_TO_STRING: Final[Dict[str, Tuple[str, ...]]] = OPERATOR_DATA[
+    "operator-to-string"
+]
 
 
 def check_number(source_code: str):
@@ -86,6 +91,63 @@ def tokens(source_code) -> List[Token]:
     return tokens
 
 
+def test_LITERAL_TOKENS_dict():
+    for start_character, token_names in LITERAL_TOKENS.items():
+        if len(token_names) < 2:
+            continue
+        last_token_name = token_names[0]
+
+        if last_token_name in (
+            "BarGreater",
+            "LessBar",
+            "LinearSyntaxStar",
+            "Number",
+            "Pattern",
+            "Symbol",
+            "RawColon",
+            "Unequal",  # FIXME reinstate this
+        ):
+            continue
+        # In the case of Function, there are several strings representations
+        # We need to use the one that has start charcter in it.
+        OPERATOR_TO_STRING[last_token_name]
+        for last_operator in reversed(OPERATOR_TO_STRING[last_token_name]):
+            if start_character == last_operator[0]:
+                break
+        else:
+            assert False, f"I did not find an operator for {start_character}"
+
+        last_length = len(last_operator)
+        for token_name in token_names[1:]:
+            # Function should not be in the list below.
+            # But right now it is has different symbols & and |->
+            # with the same name "Function"
+            if token_name in (
+                "Number",
+                "RawColon",
+                "Semicolon",
+                "Greater",  # FIXME reinstate this
+                "Function",  # FIXME reinstate this
+            ):
+                continue
+            for operator in reversed(OPERATOR_TO_STRING[token_name]):
+                if start_character == operator[0]:
+                    break
+            else:
+                assert (
+                    False
+                ), f"Did not find an in {start_character} an operator named {token_name}"
+            operator = OPERATOR_TO_STRING[token_name][-1]
+            n = len(operator)
+            assert last_length >= n, (
+                f"Out of order tuple in {start_character}: "
+                f"{last_operator} ({last_token_name}) is shorter than {operator} ({token_name})"
+            )
+            last_length = n
+            last_token_name = token_name
+            last_operator = operator
+
+
 def test_accuracy():
     scanner_error("1.5``")
     check_number("1.0``20")
@@ -135,7 +197,7 @@ def test_boxes():
     ]
     assert tokens("\\(\\*RowBox[a]\\)") == [
         Token("LeftRowBox", "\\(", 0),
-        Token("BoxInputEscape", "\\*", 2),
+        Token("LinearSyntaxStar", "\\*", 2),
         Token("Symbol", "RowBox", 4),
         Token("OpenSquare", "[", 10),
         Token("Symbol", "a", 11),

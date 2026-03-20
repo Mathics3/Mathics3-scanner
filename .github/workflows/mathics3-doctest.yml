@@ -36,12 +36,9 @@ jobs:
     - name: Build Mathics3
       run: |
         # Until next Mathics3/mathics-core release is out...
-        git clone --depth 1 https://github.com/Mathics3/mathics-core.git
+        git clone --depth 1 -b more-scanner-changes https://github.com/Mathics3/mathics-core.git
         cd mathics-core/
         python -m pip install -e .[dev]
-        cp -v ../mathics_scanner/data/boxing-characters.json mathics/data/boxing-characters.json
-        cp -v ../mathics_scanner/data/named-characters.json mathics/data/named-characters.json
-        cp -v ../mathics_scanner/data/operators.json mathics/data/operators.json
         cd ..
     - name: Run Mathics3 tests
       run: |

@@ -39,9 +39,14 @@ def compile_tables(
     information.
     """
     operator_precedences = {}
+    operator_name_to_character_name = {}
 
     for k, v in operator_data.items():
         operator_precedences[k] = v["precedence"]
+
+    for character_name, character_info in character_data.items():
+        if (operator_name := character_info.get("operator-name")) is not None:
+            operator_name_to_character_name[operator_name] = character_name
 
     box_operators = {}
     flat_binary_operators: Dict[str, int] = {}
@@ -101,7 +106,11 @@ def compile_tables(
 
         character_info = character_data.get(operator_name)
         if character_info is None:
-            continue
+            if (
+                character_name := operator_name_to_character_name.get(operator_name)
+            ) is None:
+                continue
+            character_info = character_data.get(character_name)
 
         unicode_char = character_info.get("unicode-equivalent", "no-unicode")
         ascii_chars = character_info.get("ascii", "no-ascii")

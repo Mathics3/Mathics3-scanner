@@ -5970,6 +5970,12 @@ Implies:
   wl-reference: https://reference.wolfram.com/language/ref/character/Implies.html
   wl-unicode: "\uF523"
 
+Increment:
+  ascii: "++"
+  has-unicode-inverse: false
+  is-letter-like: false
+  operator-name: Increment
+
 IndentingNewLine:
   esc-alias: nl
   has-unicode-inverse: false
@@ -5998,12 +6004,6 @@ Infix:
   amslatex: '\textasciitilde'
   has-unicode-inverse: false
   is-letter-like: false
-
-Information:
-  ascii: "??"
-  has-unicode-inverse: false
-  is-letter-like: false
-  operator-name: Information
 
 Integral:
   amslatex: '\int'
@@ -7794,6 +7794,9 @@ OptionKey:
   wl-reference: https://reference.wolfram.com/language/ref/character/OptionKey.html
   wl-unicode: "\uF7D2"
 
+# Optional and Pattern are both operators.  When ":" represents one or
+# another depends on context, and determining which is what is
+# mysterious right now.
 Optional:
   ascii: ":"
   has-unicode-inverse: false
@@ -7867,6 +7870,15 @@ PartialD:
   wl-reference: https://reference.wolfram.com/language/ref/character/PartialD.html
   wl-unicode: "\u2202"
   wl-unicode-name: PARTIAL DIFFERENTIAL
+
+# Optional and Pattern are both operators.  When ":" represents one or
+# another depends on context, and determining which is what is
+# mysterious right now.
+Pattern:
+  ascii: ":"
+  has-unicode-inverse: false
+  is-letter-like: false
+  operator-name: Pattern
 
 # See also RawQuestion
 PatternTest:
@@ -8133,6 +8145,12 @@ QuarterNote:
   wl-reference: https://reference.wolfram.com/language/ref/character/QuarterNote.html
   wl-unicode: "\u2669"
   wl-unicode-name: QUARTER NOTE
+
+QuestionQuestion:
+  ascii: "??"
+  has-unicode-inverse: false
+  is-letter-like: false
+  operator-name: QuestionQuestion
 
 RHacek:
   esc-alias: rv
@@ -9737,6 +9755,18 @@ SkeletonIndicator:
   wl-reference: https://reference.wolfram.com/language/ref/character/SkeletonIndicator.html
   wl-unicode: "\u2043"
   wl-unicode-name: HYPHEN BULLET
+
+Slot:
+  ascii: "#"
+  has-unicode-inverse: false
+  is-letter-like: false
+  operator-name: Slot
+
+SlotSequence:
+  ascii: "##"
+  has-unicode-inverse: false
+  is-letter-like: false
+  operator-name: SlotSequence
 
 SmallCircle:
   amslatex: '\circ'

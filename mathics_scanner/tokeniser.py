@@ -157,7 +157,6 @@ MATHICS3_TAG_TO_CODETOKENIZE: Final[Dict[str, str]] = {
     "Alternatives": "Bar",
     "And": "AmpAmp",
     "Apply": "AtAt",
-    "ApplyList": "AtAtAt",
     "Cap": "LongName`Cap",
     "Cup": "LongName`Cup",
     "Decrement": "MinusMinus",
@@ -171,6 +170,7 @@ MATHICS3_TAG_TO_CODETOKENIZE: Final[Dict[str, str]] = {
     "Increment": "PlusPlus",
     "Infix": "Tilde",
     "InterpretedBox": "LinearSequence`Bang",
+    "MapApply": "AtAtAt",
     "MessageName": "ColonColon",
     "Or": "BarBar",
     "Pattern": "Under",
@@ -192,6 +192,147 @@ MATHICS3_TAG_TO_CODETOKENIZE: Final[Dict[str, str]] = {
     "Times": "Star",
     "TimesBy": "StarEqual",
     "Unequal": "BangEqual",
+}
+
+# The format below maps a string character to a tuple of possible
+# Token tag names.
+
+# For the tag name, we try to use CodeTokenize names. However in
+# some situations this is not feasibile, given how our scanner and
+# parser interact. In particular, the parser needs precedence
+# information for binary operators. To get this, it is convenient
+# to work off the operator name indicated by token value. So a
+# token tag of "PatternTest" (for binary operators) is more
+# convenient than "?" and a lookup of the binary operator name.
+
+# Note that the tuple below is in reverse string length order. In particular,
+# tokens associated with a single character tokens like Factorial
+# (!), has to come after both Unequal (!=), and Factorial2 (!!) to
+# ensure that all of the token-name candidates are considered.
+
+# This is not Final since init_module adds to it.
+LITERAL_TOKENS: Dict[str, Tuple[str]] = {
+    "!": (
+        # Note that "Factorial" has to come last.
+        "Unequal",
+        "Factorial2",
+        "Factorial",
+    ),
+    '"': ("String",),
+    "#": (
+        # Note that "Slot" has to come last.
+        "SlotSequence",
+        "Slot",
+    ),
+    "%": ("Out",),
+    "&": ("And", "Function"),
+    "'": ("Derivative",),
+    "(": ("OpenParen",),
+    ")": ("CloseParen",),
+    "*": ("NonCommutativeMultiply", "TimesBy", "Times"),
+    "+": ("Increment", "AddTo", "Plus"),
+    ",": ("RawComma",),
+    "-": (
+        # Note that "Minus" has to come last.
+        "Decrement",
+        "SubtractFrom",
+        "Rule",
+        "Minus",
+    ),
+    ".": (
+        # Note that "Dot" has to come last.
+        "Number",
+        "RepeatedNull",
+        "Repeated",
+        "Dot",
+    ),
+    "/": (
+        # Note that "Divide" has to come last.
+        "MapAll",
+        "ReplaceRepeated",
+        "Map",
+        "DivideBy",
+        "ReplaceAll",
+        "RightComposition",
+        "Postfix",
+        "TagSet",
+        "Condition",
+        "Divide",
+    ),
+    ":": ("MessageName", "RuleDelayed", "SetDelayed", "RawColon"),
+    ";": (
+        # Note that "Semicolon" has to come last.
+        "Span",
+        "Semicolon",
+    ),
+    "<": (
+        # Note that "Less" has to come last.
+        "LessBar",
+        "UndirectedEdge",
+        "Get",
+        "StringJoin",
+        "LessEqual",
+        "Less",
+    ),
+    "=": (
+        # Note that "Set" has to come last.
+        "SameQ",
+        "UnsameQ",
+        "Equal",
+        "Unset",
+        "Set",
+    ),
+    ">": (
+        # Note that "Greater" has to come last.
+        "PutAppend",
+        "Put",
+        "GreaterEqual",
+        "Greater",
+    ),
+    "?": (
+        # Note that "PatternTest" has to come last.
+        "QuestionQuestion",  # Long-form Information
+        "PatternTest",
+    ),
+    "@": ("MapApply", "Apply", "Composition", "Prefix"),
+    "[": ("OpenSquare",),
+    "\\": (
+        # Note that "RawBackSlash" has to come last.
+        "LinearSyntaxStar",
+        "LeftRowBox",
+        "RightRowBox",
+        "InterpretedBox",
+        "SuperscriptBox",
+        "SubscriptBox",
+        "OverscriptBox",
+        "UnderscriptBox",
+        "OtherscriptBox",
+        "FractionBox",
+        "SqrtBox",
+        "RadicalBox",
+        "FormBox",
+        "RawBackslash",
+    ),
+    "]": ("CloseSquare",),
+    "^": (
+        # Note that "Power" has to come last.
+        "UpSetDelayed",
+        "UpSet",
+        "Power",
+    ),
+    "_": ("Pattern",),
+    "`": (
+        "Pattern",
+        "Symbol",
+    ),
+    "|": ("BarGreater", "Or", "Alternatives", "Function"),
+    "{": ("OpenCurly",),
+    "}": ("CloseCurly",),
+    "~": (
+        # Note that "Infix" has to come last.
+        "StringExpression",
+        "Infix",
+    ),
 }
 
 
@@ -227,7 +368,7 @@ def init_module():
     )
 
     tokens: List[Tuple[str, ...]] = [
-        ("BoxInputEscape", r" \\[*]"),
+        ("LinearSyntaxStar", r" \\[*]"),
         ("Definition", r"\? "),
         ("Get", r"\<\<"),
         ("QuestionQuestion", r"\?\? "),
@@ -276,7 +417,6 @@ def init_module():
         ("Alternatives", r" \| "),
         ("And", rf" (\&\&) | {NAMED_CHARACTERS['And']} "),
         ("Apply", r" \@\@ "),
-        ("ApplyList", r" \@\@\@ "),
         ("Composition", r" \@\* "),
         ("Condition", r" \/\; "),
         ("Conjugate", f" {NAMED_CHARACTERS['Conjugate']} "),
@@ -329,6 +469,7 @@ def init_module():
         ("LessEqual", rf" (\<\=) | {NAMED_CHARACTERS['LessEqual']} "),
         ("Map", r" \/\@ "),
         ("MapAll", r" \/\/\@ "),
+        ("MapApply", r" \@\@\@ "),
         ("Minus", r" \-| {NAME_TO_WL_UNICODE['Minus']} "),
         ("Nand", rf" {NAMED_CHARACTERS['Nand']} "),
         ("NonCommutativeMultiply", r" \*\* "),
@@ -403,151 +544,11 @@ def init_module():
                 unicode = unicode[0]
             tokens.append((operator_name, rf" {unicode} "))
 
-    # The format below maps a string character to a tuple of possible
-    # Token tag names.
-
-    # For the tag name, we try to use CodeTokenize names. However in
-    # some situations this is not feasibile, given how our scanner and
-    # parser interact. In particular, the parser needs precedence
-    # information for binary operators. To get this, it is convenient
-    # to work off the operator name indicated by token value. So a
-    # token tag of "PatternTest" (for binary operators) is more
-    # convenient than "?" and a lookup of the binary operator name.
-
-    # Note that the tuple below is in priority order. In particular,
-    # tokens associated with a single character tokens like Factorial
-    # (!), has to come after both Unequal (!=), and Factorial2 (!!) to
-    # ensure all the candidates be considered.
-
-    literal_tokens: Dict[str, Tuple[str]] = {
-        "!": (
-            # Note that "Factorial" has to come last.
-            "Unequal",
-            "Factorial2",
-            "Factorial",
-        ),
-        '"': ("String",),
-        "#": (
-            # Note that "Slot" has to come last.
-            "SlotSequence",
-            "Slot",
-        ),
-        "%": ("Out",),
-        "&": ("And", "Function"),
-        "'": ("Derivative",),
-        "(": ("OpenParen",),
-        ")": ("CloseParen",),
-        "*": ("NonCommutativeMultiply", "TimesBy", "Times"),
-        "+": ("Increment", "AddTo", "Plus"),
-        ",": ("RawComma",),
-        "-": (
-            # Note that "Minus" has to come last.
-            "Decrement",
-            "SubtractFrom",
-            "Rule",
-            "Minus",
-        ),
-        ".": (
-            # Note that "Dot" has to come last.
-            "Number",
-            "RepeatedNull",
-            "Repeated",
-            "Dot",
-        ),
-        "/": (
-            # Note that "Divide" has to come last.
-            "MapAll",
-            "Map",
-            "DivideBy",
-            "ReplaceRepeated",
-            "ReplaceAll",
-            "RightComposition",
-            "Postfix",
-            "TagSet",
-            "Condition",
-            "Divide",
-        ),
-        ":": ("MessageName", "RuleDelayed", "SetDelayed", "RawColon"),
-        ";": (
-            # Note that "Semicolon" has to come last.
-            "Span",
-            "Semicolon",
-        ),
-        "<": (
-            # Note that "Less" has to come last.
-            "LessBar",
-            "UndirectedEdge",
-            "Get",
-            "StringJoin",
-            "LessEqual",
-            "Less",
-        ),
-        "=": (
-            # Note that "Set" has to come last.
-            "SameQ",
-            "UnsameQ",
-            "Equal",
-            "Unset",
-            "Set",
-        ),
-        ">": (
-            # Note that "Greater" has to come last.
-            "PutAppend",
-            "Put",
-            "GreaterEqual",
-            "Greater",
-        ),
-        "?": (
-            # Note that "PatternTest" has to come last.
-            "QuestionQuestion",
-            "PatternTest",
-        ),
-        "@": ("ApplyList", "Apply", "Composition", "Prefix"),
-        "[": ("OpenSquare",),
-        "\\": (
-            # Note that "RawBackSlash" has to come last.
-            "BoxInputEscape",
-            "LeftRowBox",
-            "RightRowBox",
-            "InterpretedBox",
-            "SuperscriptBox",
-            "SubscriptBox",
-            "OverscriptBox",
-            "UnderscriptBox",
-            "OtherscriptBox",
-            "FractionBox",
-            "SqrtBox",
-            "RadicalBox",
-            "FormBox",
-            "RawBackslash",
-        ),
-        "]": ("CloseSquare",),
-        "^": (
-            # Note that "Power" has to come last.
-            "UpSetDelayed",
-            "UpSet",
-            "Power",
-        ),
-        "_": ("Pattern",),
-        "`": (
-            "Pattern",
-            "Symbol",
-        ),
-        "|": ("BarGreater", "Or", "Alternatives", "Function"),
-        "{": ("OpenCurly",),
-        "}": ("CloseCurly",),
-        "~": (
-            # Note that "Infix" has to come last.
-            "StringExpression",
-            "Infix",
-        ),
-    }
-
     for c in string.ascii_letters:
-        literal_tokens[c] = ("Pattern", "Symbol")
+        LITERAL_TOKENS[c] = ("Pattern", "Symbol")
 
     for c in string.digits:
-        literal_tokens[c] = ("Number",)
+        LITERAL_TOKENS[c] = ("Number",)
 
     # The token and its matching pattern in filename mode.
     filename_tokens = [("Filename", FILENAME_PATTERN)]
@@ -562,7 +563,7 @@ def init_module():
     FILENAME_TOKENS.clear()
 
     TOKENS.extend(compile_tokens(tokens))
-    TOKEN_INDICES.update(find_indices(literal_tokens))
+    TOKEN_INDICES.update(find_indices(LITERAL_TOKENS))
     FILENAME_TOKENS.extend(compile_tokens(filename_tokens))
     NAME_PATTERN_TOKENS.extend(compile_tokens(name_pattern_tokens))
 
