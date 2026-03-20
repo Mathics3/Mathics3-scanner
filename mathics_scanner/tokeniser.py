@@ -249,9 +249,9 @@ LITERAL_TOKENS: Dict[str, Tuple[str]] = {
     "/": (
         # Note that "Divide" has to come last.
         "MapAll",
+        "ReplaceRepeated",
         "Map",
         "DivideBy",
-        "ReplaceRepeated",
         "ReplaceAll",
         "RightComposition",
         "Postfix",
