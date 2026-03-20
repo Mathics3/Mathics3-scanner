@@ -5,6 +5,8 @@
 # All of the key names *except* \! and \* are associated with
 # some box operator.
 #
+# The key name, like "LinearSyntaxAmp", follows the names used by
+# CodeTokenize of the CodeParser package.
 #
 # Fields
 # ======
@@ -35,62 +37,74 @@
 
 LinearSyntaxAmp:
   ASCII: '\&'
-  Operators: []
+  Operators: [OverscriptBox]
   Unicode: "\uf7c7"
+  usage: 'box1 \& box'
 
 LinearSyntaxAt:
   ASCII: '\@'
   Operators: [RadicalBox, SqrtBox]
   Unicode: "\uf7c1"
+  usage: 'box1 \@ box'
 
 LinearSyntaxBacktick:
   ASCII: '\`'
   Operators: [FormBox]
   Unicode: "\uf7cd"
+  usage: 'box1 \` box'
 
 LinearSyntaxBang:
   ASCII: '\!'
   Operators:
   Unicode: "\uf7c2"
+  usage: '\!\(x\^2\)'
 
 LinearSyntaxCaret:
   ASCII: '\^'
   Operators: SuperscriptBox
   Unicode: "\uf7c6"
+  usage: 'box1 \^ box2'
 
 # Note: this name does not appear in CodeParse
 LinearSyntaxCloseParen:
   ASCII: '\)'
   Operators: [RowBox]
   Unicode: "\uf7c0"
+  usage: '\(box1, box2\)'
 
 # Note: this name does not appear in CodeParse
 LinearSyntaxOpenParen:
   ASCII: '\('
   Operators: [RowBox]
   Unicode: "\uf7c9"
+  usage: '\(box1, box2\)'
 
 LinearSyntaxPercent:
   ASCII: '\%'
-  Operators: [RadicalBox, SuperscriptBox, UnderOverscriptBox]
+  Operators: [RadicalBox, SubsuperscriptBox, UnderOverscriptBox]
   Unicode: "\uf7c5"
+  usage: ['\@box1\%box2', '\@box1\_box2\%box3', '\@box1\+box2\%box3']
 
 LinearSyntaxPlus:
   ASCII: '\+'
   Operators: [UnderscriptBox, UnderOverscriptBox]
   Unicode: "\uf7cb"
+  usage: 'box1 \+ box2'
 
 LinearSyntaxStar:
   ASCII: '\*'
   Operators: []
   Unicode: "\uf7c8"
+  usage: '\*input'
 
 LinearSyntaxSlash:
   ASCII: '\/'
   Operators: [FractionBox]
   Unicode: "\uf7cc"
+  usage: 'box1 \/ box2'
 
 LinearSyntaxUnder:
   ASCII: '\_'
   Operators: [SubscriptBox, SubsuperscriptBox]
   Unicode: "\uf7ca"
+  usage: ['box1\_box2', '\@box1\_box2\%box3']
