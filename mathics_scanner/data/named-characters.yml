@@ -9756,17 +9756,19 @@ SkeletonIndicator:
   wl-unicode: "\u2043"
   wl-unicode-name: HYPHEN BULLET
 
-Slot:
-  ascii: "#"
-  has-unicode-inverse: false
-  is-letter-like: false
-  operator-name: Slot
+# FIXME: These are commented out because
+# of bugs in ToString in Mathics3-core
+# Slot:
+#   ascii: "#"
+#   has-unicode-inverse: false
+#   is-letter-like: false
+#   operator-name: Slot
 
-SlotSequence:
-  ascii: "##"
-  has-unicode-inverse: false
-  is-letter-like: false
-  operator-name: SlotSequence
+# SlotSequence:
+#   ascii: "##"
+#   has-unicode-inverse: false
+#   is-letter-like: false
+#   operator-name: SlotSequence
 
 SmallCircle:
   amslatex: '\circ'
