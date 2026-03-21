@@ -8916,7 +8916,7 @@ RoundSpaceIndicator:
 
 # Note: not the same as \[RightArrow] or \[DirectedEdge]
 Rule:
-  amslatex: '\vrightarrow'
+  amslatex: '\to'
   ascii: "->"
   esc-alias: "->"
   has-unicode-inverse: false
