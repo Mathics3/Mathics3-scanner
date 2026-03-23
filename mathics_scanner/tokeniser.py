@@ -496,7 +496,10 @@ def init_module():
             "Rule",
             r" (\-\>)| {NAME_TO_WL_UNICODE['Rule'']} | {NAMED_CHARACTERS['Rule']} ",
         ),
-        ("RuleDelayed", r" (\:\>)| {NAME_TO_WL_UNICODE['RuleDelayed']} "),
+        (
+            "RuleDelayed",
+            rf" (\:\>)| {NAME_TO_WL_UNICODE['RuleDelayed']} | {NAMED_CHARACTERS['RuleDelayed']} ",
+        ),
         ("SameQ", r" \=\=\= "),
         ("Semicolon", r" \; "),
         ("Set", r" \= "),
