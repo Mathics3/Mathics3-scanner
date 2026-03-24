@@ -54,7 +54,7 @@ full = [
 mathics3-make-boxing-character-json = "mathics_scanner.generate.boxing_characters:main"
 mathics3-make-named-character-json = "mathics_scanner.generate.named_characters:main"
 mathics3-make-operator-json = "mathics_scanner.generate.operators:main"
-mathics3-tokens = "mathics_scanner.mathics3_tokens:main"
+mathics3-code-tokenizer = "mathics_scanner.mathics3_code_tokenizer:main"
 
 [tool.setuptools]
 packages = [
