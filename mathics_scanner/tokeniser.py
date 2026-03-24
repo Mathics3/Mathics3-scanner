@@ -494,7 +494,7 @@ def init_module():
         ("RightComposition", r" \/\* "),
         (
             "Rule",
-            r" (\-\>)| {NAME_TO_WL_UNICODE['Rule'']} | {NAMED_CHARACTERS['Rule']} ",
+            rf" (\-\>)| {NAME_TO_WL_UNICODE['Rule']} | {NAMED_CHARACTERS['Rule']} ",
         ),
         (
             "RuleDelayed",
