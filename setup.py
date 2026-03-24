@@ -44,7 +44,7 @@ class build_py(setuptools_build_py):
             json_data_file = osp.join("data", f"{table_type}.json")
             json_path = osp.join("mathics-scanner", json_data_file)
             if not osp.exists(json_path):
-                os.system(f"mathics3-make-{table_type}-json" " -o {json-path}")
+                os.system(f"mathics3-make-{table_type}-json -o {json_path}")
             self.distribution.package_data["Mathics-Scanner"].append(json_data_file)
         setuptools_build_py.run(self)
 
