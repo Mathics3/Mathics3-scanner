@@ -1,5 +1,7 @@
 """
-Command-line routine to how scanner tokenizes text.
+Command-line routine to how the Mathics3 scanner tokenizes text.
+This is analogous (but not exactly the same as) the CodeTokenize[]
+function in the WMA CoderParser package.
 """
 
 import argparse
@@ -38,6 +40,9 @@ class TerminalShell(LineFeeder):
         self.using_readline = False
         try:
             if want_readline:
+                # We import for the side-effect of redefining the `input()` builtin function.
+                import readline  # noqa
+
                 self.using_readline = sys.stdin.isatty() and sys.stdout.isatty()
                 self.ansi_color_re = re.compile("\033\\[[0-9;]+m")
         except ImportError:
@@ -104,11 +109,15 @@ class TerminalShell(LineFeeder):
             self.in_prefix, next_line_number, *self.incolors
         )
 
-    def get_out_prompt(self):
+    def get_out_prompt(self, start_line: int) -> str:
         line_number = self.get_last_line_number()
-        return "{2}{0}[{3}{1}{4}]= {5}".format(
-            self.out_prefix, line_number, *self.outcolors
-        )
+        if start_line == line_number:
+            prefix_str = "{0}[{1}]= ".format(self.out_prefix, line_number)
+            return " " * len(prefix_str)
+        else:
+            return "{2}{0}[{3}{1}{4}]= {5}".format(
+                self.out_prefix, line_number, *self.outcolors
+            )
 
     def to_output(self, text):
         line_number = self.get_last_line_number()
@@ -157,6 +166,7 @@ def interactive_eval_loop(shell: TerminalShell, code_tokenize_format: bool):
         try:
             source_text = shell.feed()
             tokens(shell, source_text, code_tokenize_format)
+            pass
         except NamedCharacterSyntaxError:
             shell.errmsg(
                 "Syntax",
@@ -198,6 +208,7 @@ def tokens(shell: TerminalShell, source_text: str, code_tokenize_format: bool):
     tokeniser = Tokeniser(
         SingleLineFeeder(source_text, "<Mathics3-tokens>", ContainerKind.STRING)
     )
+    last_line_number = shell.get_last_line_number() + 1
     while True:
         try:
             token = tokeniser.next()
@@ -210,22 +221,21 @@ def tokens(shell: TerminalShell, source_text: str, code_tokenize_format: bool):
         if token.tag == "END":
             break
         elif code_tokenize_format:
-            mess = shell.get_out_prompt()
-            print(
-                mess + replace_box_unicode_with_ascii(token.code_tokenize_format) + "\n"
-            )
+            mess = shell.get_out_prompt(last_line_number)
+            print(mess + replace_box_unicode_with_ascii(token.code_tokenize_format))
         else:
-            mess = shell.get_out_prompt()
+            mess = shell.get_out_prompt(last_line_number)
             token.text = replace_box_unicode_with_ascii(token.text)
-            print(mess + str(token) + "\n")
+            print(mess + str(token))
+        last_line_number = shell.get_last_line_number()
 
 
 def main():
     argparser = argparse.ArgumentParser(
-        prog="mathics3-tokens",
+        prog="mathics3-code-tokenize",
         usage="%(prog)s [options] [FILE]",
         add_help=False,
-        description="A simple command-line to show Mathics tokens",
+        description="A simple command-line to show Mathics3 tokens. Similar to CodeParser`CodeTokenize",
     )
 
     argparser.add_argument(
