@@ -169,7 +169,7 @@ _unicode_to_wl_re: Final[re.Pattern] = re.compile(
 
 CHARACTER_TO_NAME = {
     char: rf"\[{name}]"
-    for name, char in NAMED_CHARACTERS_COLLECTION["named-characters"].items()
+    for name, char in NAMED_CHARACTERS.items()
 }
 # TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uF74C" in WMA is named as
 # \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
