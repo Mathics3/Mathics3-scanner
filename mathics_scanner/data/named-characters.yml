@@ -813,7 +813,7 @@ CapitalDelta:
 
 CapitalDifferentialD:
   amslatex: '\mathbb{D}'
-  ascii: "d"
+  ascii: "D"
   esc-alias: DD
   has-unicode-inverse: true
   is-letter-like: true
@@ -2131,6 +2131,7 @@ DifferenceDelta:
 # \u2146
 DifferentialD:
   amslatex: '\,d'
+  ascii: "d"
   esc-alias: dd
   has-unicode-inverse: true
   # This can't be letter-like because it is used in derivatives as a function
