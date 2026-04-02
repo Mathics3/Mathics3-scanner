@@ -167,14 +167,11 @@ _unicode_to_wl_re: Final[re.Pattern] = re.compile(
 
 # Unicode to ASCII
 
-CHARACTER_TO_NAME = {
-    char: rf"\[{name}]"
-    for name, char in NAMED_CHARACTERS.items()
-}
+CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
 # TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uF74C" in WMA is named as
 # \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
 # we can print with standard fonts. The problem with this approach is that the map
-# would not be invertible anymore. 
+# would not be invertible anymore.
 
 
 # This dictionary is used for the default encoding from Unicode/UTF-8 to ASCII
@@ -191,8 +188,6 @@ UNICODE_CHARACTER_TO_ASCII.update(
 # \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
 # we can print with standard fonts. For the effects of this table, "\uF74C" should be mapped to
 # something that can be print as an ASCII string (probably, "d").
-
-
 
 
 # Deprecated
