@@ -23,7 +23,7 @@ jobs:
         sudo apt-get update -qq && sudo apt-get install -qq liblapack-dev llvm-dev tesseract-ocr remake
     - name: Install Mathics3 scanner without JSON
       run: |
-        python -m pip install --upgrade pip
+        python -m pip install --upgrade pip setuptools wheel
         pip install -e .
     - name: Install JSON files
       run: |
