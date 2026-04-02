@@ -38,6 +38,9 @@ jobs:
         # Until next Mathics3/mathics-core release is out... Here is where things go wrong.
         git clone --depth 1 --branch adjust_mathics3_dependency https://github.com/Mathics3/mathics-core.git
         cd mathics-core/
+        git fetch
+        git branch
+        git checkout adjust_mathics3_dependency
         python -m pip install -e .[dev]
         cd ..
     - name: Run Mathics3 tests
