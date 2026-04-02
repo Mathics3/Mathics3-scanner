@@ -35,7 +35,7 @@ jobs:
         ls -l mathics_scanner/data/operators.json
     - name: Build Mathics3
       run: |
-        # Until next Mathics3/mathics-core release is out... Here is where things go wrong.
+        # Until next Mathics3/mathics-core release is out...
         git clone --depth 1 --branch adjust_mathics3_dependency https://github.com/Mathics3/mathics-core.git
         cd mathics-core/
         git fetch
