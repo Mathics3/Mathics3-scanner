@@ -177,17 +177,18 @@ CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.item
 # This dictionary is used for the default encoding from Unicode/UTF-8 to ASCII
 
 UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
-UNICODE_CHARACTER_TO_ASCII.update(
-    {
-        ch: NAMED_CHARACTERS_COLLECTION["operator-to-ascii"][name]
-        for name, ch in NAMED_CHARACTERS_COLLECTION["operator-to-unicode"].items()
-        if name in NAMED_CHARACTERS_COLLECTION["operator-to-ascii"]
-    }
-)
-# TODO: add WL characters to UNICODE_CHARACTER_TO_ASCII. For example, "\uF74C" in WMA is named as
-# \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
-# we can print with standard fonts. For the effects of this table, "\uF74C" should be mapped to
-# something that can be print as an ASCII string (probably, "d").
+if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
+    UNICODE_CHARACTER_TO_ASCII.update(
+        {
+            ch: NAMED_CHARACTERS_COLLECTION["operator-to-ascii"][name]
+            for name, ch in NAMED_CHARACTERS_COLLECTION["operator-to-unicode"].items()
+            if name in NAMED_CHARACTERS_COLLECTION["operator-to-ascii"]
+        }
+    )
+    # TODO: add WL characters to UNICODE_CHARACTER_TO_ASCII. For example, "\uF74C" in WMA is named as
+    # \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
+    # we can print with standard fonts. For the effects of this table, "\uF74C" should be mapped to
+    # something that can be print as an ASCII string (probably, "d").
 
 
 # Deprecated
