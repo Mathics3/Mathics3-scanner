@@ -41,7 +41,6 @@ jobs:
         git fetch
         git branch
         git checkout adjust_mathics3_dependency
-        python -m pip install --no-build-isolation -e .
         python -m pip install --no-build-isolation -e .[dev]
         cd ..
     - name: Run Mathics3 tests
