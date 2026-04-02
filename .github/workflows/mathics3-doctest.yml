@@ -35,7 +35,7 @@ jobs:
         ls -l mathics_scanner/data/operators.json
     - name: Build Mathics3
       run: |
-        # Until next Mathics3/mathics-core release is out...
+        # Until next Mathics3/mathics-core release is out... Here is where things go wrong.
         git clone --depth 1 https://github.com/Mathics3/mathics-core.git
         cd mathics-core/
         python -m pip install -e .[dev]
