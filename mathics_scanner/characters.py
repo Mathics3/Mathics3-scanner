@@ -167,7 +167,7 @@ _unicode_to_wl_re: Final[re.Pattern] = re.compile(
 
 # Unicode to ASCII
 
-CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
+# CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
 # TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uF74C" in WMA is named as
 # \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
 # we can print with standard fonts. The problem with this approach is that the map
@@ -176,8 +176,8 @@ CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.item
 
 # This dictionary is used for the default encoding from Unicode/UTF-8 to ASCII
 
-UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
-if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
+# UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
+if False and "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
     UNICODE_CHARACTER_TO_ASCII.update(
         {
             ch: NAMED_CHARACTERS_COLLECTION["operator-to-ascii"][name]
