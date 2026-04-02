@@ -38,7 +38,7 @@ jobs:
         # Until next Mathics3/mathics-core release is out...
         git clone --depth 1 https://github.com/Mathics3/mathics-core.git
         cd mathics-core/
-        python -m pip install -e .[dev]
+        python -m pip install --no-build-isolation -e .[dev]
         cd ..
     - name: Run Mathics3 tests
       run: |

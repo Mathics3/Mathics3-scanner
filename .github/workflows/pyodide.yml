@@ -54,10 +54,6 @@ jobs:
           pip install "setuptools" PyYAML click packaging pytest
 
           # We should comment out after next mathics-core release
-          python -m pip install --no-build-isolation -e .
-          python -m mathics_scanner.generate.boxing_characters
-          python -m mathics_scanner.generate.named_characters
-          python -m mathics_scanner.generate.operators
           python -m pip install --no-build-isolation --no-deps -e git+https://github.com/Mathics3/mathics-core#egg=Mathics3
           # python -m pip Mathics3
 
