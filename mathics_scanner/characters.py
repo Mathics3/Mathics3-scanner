@@ -166,18 +166,18 @@ _unicode_to_wl_re: Final[re.Pattern] = re.compile(
 )
 
 # Unicode to ASCII
-
-# CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
-# TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uF74C" in WMA is named as
-# \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
+"""
+CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
+# TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uf74c" in WMA is named as
+# \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
 # we can print with standard fonts. The problem with this approach is that the map
 # would not be invertible anymore.
 
 
 # This dictionary is used for the default encoding from Unicode/UTF-8 to ASCII
 
-# UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
-if False and "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
+UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
+if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
     UNICODE_CHARACTER_TO_ASCII.update(
         {
             ch: NAMED_CHARACTERS_COLLECTION["operator-to-ascii"][name]
@@ -185,10 +185,11 @@ if False and "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
             if name in NAMED_CHARACTERS_COLLECTION["operator-to-ascii"]
         }
     )
-    # TODO: add WL characters to UNICODE_CHARACTER_TO_ASCII. For example, "\uF74C" in WMA is named as
-    # \[DifferentialD]. Here we are using "\U0001D451" for that name, because is a character
-    # we can print with standard fonts. For the effects of this table, "\uF74C" should be mapped to
+    # TODO: add WL characters to UNICODE_CHARACTER_TO_ASCII. For example, "\uf74c" in WMA is named as
+    # \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
+    # we can print with standard fonts. For the effects of this table, "\uf74c" should be mapped to
     # something that can be print as an ASCII string (probably, "d").
+"""
 
 
 # Deprecated
