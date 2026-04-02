@@ -166,7 +166,6 @@ _unicode_to_wl_re: Final[re.Pattern] = re.compile(
 )
 
 # Unicode to ASCII
-"""
 CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
 # TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uf74c" in WMA is named as
 # \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
@@ -189,7 +188,6 @@ if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
     # \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
     # we can print with standard fonts. For the effects of this table, "\uf74c" should be mapped to
     # something that can be print as an ASCII string (probably, "d").
-"""
 
 
 # Deprecated
