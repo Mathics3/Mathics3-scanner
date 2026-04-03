@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.13']
+        python-version: ['3.14']
     steps:
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
@@ -24,7 +24,7 @@ jobs:
     - name: Install Mathics3 scanner without JSON
       run: |
         python -m pip install --upgrade pip setuptools wheel
-        pip install -e .
+        pip install -e . --no-build-isolation
     - name: Install JSON files
       run: |
         python -m mathics_scanner.generate.boxing_characters -o mathics_scanner/data/boxing-characters.json
