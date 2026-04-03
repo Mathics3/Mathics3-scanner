@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ['3.13']
+        python-version: ['3.14']
     steps:
     - uses: actions/checkout@v6
     - name: Set up Python ${{ matrix.python-version }}
@@ -23,8 +23,8 @@ jobs:
         sudo apt-get update -qq && sudo apt-get install -qq liblapack-dev llvm-dev tesseract-ocr remake
     - name: Install Mathics3 scanner without JSON
       run: |
-        python -m pip install --upgrade pip
-        pip install -e .
+        python -m pip install --upgrade pip setuptools wheel
+        pip install -e . --no-build-isolation
     - name: Install JSON files
       run: |
         python -m mathics_scanner.generate.boxing_characters -o mathics_scanner/data/boxing-characters.json
@@ -38,7 +38,7 @@ jobs:
         # Until next Mathics3/mathics-core release is out...
         git clone --depth 1 https://github.com/Mathics3/mathics-core.git
         cd mathics-core/
-        python -m pip install -e .[dev]
+        python -m pip install --no-build-isolation -e .[dev]
         cd ..
     - name: Run Mathics3 tests
       run: |
