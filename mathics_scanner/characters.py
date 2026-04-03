@@ -165,6 +165,30 @@ _unicode_to_wl_re: Final[re.Pattern] = re.compile(
     NAMED_CHARACTERS_COLLECTION.get("unicode-to-wl-re", "")
 )
 
+# Unicode to ASCII
+CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.items()}
+# TODO: add WL characters to CHARACTER_TO_NAME. For example, "\uf74c" in WMA is named as
+# \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
+# we can print with standard fonts. The problem with this approach is that the map
+# would not be invertible anymore.
+
+
+# This dictionary is used for the default encoding from Unicode/UTF-8 to ASCII
+
+UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
+if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
+    UNICODE_CHARACTER_TO_ASCII.update(
+        {
+            ch: NAMED_CHARACTERS_COLLECTION["operator-to-ascii"][name]
+            for name, ch in NAMED_CHARACTERS_COLLECTION["operator-to-unicode"].items()
+            if name in NAMED_CHARACTERS_COLLECTION["operator-to-ascii"]
+        }
+    )
+    # TODO: add WL characters to UNICODE_CHARACTER_TO_ASCII. For example, "\uf74c" in WMA is named as
+    # \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
+    # we can print with standard fonts. For the effects of this table, "\uf74c" should be mapped to
+    # something that can be print as an ASCII string (probably, "d").
+
 
 # Deprecated
 def replace_wl_with_plain_text(wl_input: str, use_unicode=True) -> str:
