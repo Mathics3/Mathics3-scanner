@@ -24,7 +24,7 @@ jobs:
     - name: Install Mathics3 scanner without JSON
       run: |
         python -m pip install --upgrade pip setuptools wheel
-        pip install -e .
+        pip install -e . --no-build-isolation
     - name: Install JSON files
       run: |
         python -m mathics_scanner.generate.boxing_characters -o mathics_scanner/data/boxing-characters.json
