@@ -15,7 +15,7 @@ dependencies = [
     "chardet",    # Used in mathics_scanner.feed
     "click",      # Using in CLI: mathics3-generate-json-table
 ]
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 readme = "README.rst"
 license = "GPL-3.0-or-later"
 keywords = ["Mathematica", "Wolfram", "Interpreter", "Shell", "Math", "CAS"]
