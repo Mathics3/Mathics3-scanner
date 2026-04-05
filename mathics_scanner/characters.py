@@ -176,7 +176,10 @@ CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.item
 # This dictionary is used for the default encoding from Unicode/UTF-8 to ASCII
 
 UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
-if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
+if (
+    "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION
+    and "operator_to_unicode" in NAMED_CHARACTERS_COLLECTION
+):
     UNICODE_CHARACTER_TO_ASCII.update(
         {
             ch: NAMED_CHARACTERS_COLLECTION["operator-to-ascii"][name]
@@ -184,6 +187,25 @@ if "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION:
             if name in NAMED_CHARACTERS_COLLECTION["operator-to-ascii"]
         }
     )
+    # All these Unicode characters have ASCII equivalents
+    # but are not in the tables.
+    UNICODE_CHARACTER_TO_ASCII.update(
+        {
+            NAMED_CHARACTERS_COLLECTION["operator_to_unicode"]["Times"]: r" x ",
+            "": r"\[DifferentialD]",
+        }
+    )
+    # Some printable ASCII characters appears in the name
+    # table. We should remove them:
+    for char in ("\n", "\t", "\r"):
+        if char in UNICODE_CHARACTER_TO_ASCII:
+            del UNICODE_CHARACTER_TO_ASCII[char]
+
+    for raw_char_code in range(32, 127):
+        char = chr(raw_char_code)
+        if char in UNICODE_CHARACTER_TO_ASCII:
+            del UNICODE_CHARACTER_TO_ASCII[char]
+
     # TODO: add WL characters to UNICODE_CHARACTER_TO_ASCII. For example, "\uf74c" in WMA is named as
     # \[DifferentialD]. Here we are using "\U0001d451" for that name, because is a character
     # we can print with standard fonts. For the effects of this table, "\uf74c" should be mapped to
