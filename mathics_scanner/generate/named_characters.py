@@ -16,6 +16,36 @@ os.environ["MATHICS3_TABLE_GENERATION"] = "true"
 from mathics_scanner.version import __version__  # noqa
 
 
+def build_unicode_to_ascii_table(data):
+    """
+    Collect unicode-equivalent and wl-unicode characters
+    in data, and associate them to an ascii string.
+    """
+    result = {}
+    for key, entry in data.items():
+        # First, look at the ascii entry
+        ascii_equiv = entry.get("ascii", None)
+        # If there is no ascii entry, try with
+        # esc-alias
+        if ascii_equiv is None:
+            ascii_equiv = entry.get("esc-alias", None)
+        # otherwise, use the NameCharacter form:
+        if ascii_equiv is None:
+            ascii_equiv = rf"\[{key}]"
+
+        unicode_equivalent = entry.get("unicode-equivalent", None)
+        if unicode_equivalent is not None:
+            # not already an ascii character
+            if len(unicode_equivalent) != 1 or ord(unicode_equivalent) > 127:
+                result[unicode_equivalent] = ascii_equiv
+        wl_unicode = entry.get("wl-unicode", None)
+        if wl_unicode is not None and wl_unicode not in result:
+            # not ascii
+            if len(wl_unicode) != 1 or ord(wl_unicode) > 127:
+                result[wl_unicode] = ascii_equiv
+    return result
+
+
 def re_from_keys(d: dict) -> str:
     """
     Takes dictionary whose keys are all strings and returns a regex that
@@ -89,6 +119,9 @@ def compile_tables(data: dict) -> dict:
         for v in data.values()
         if "esc-alias" in v
     }
+
+    # unicode-to-ascii
+    unicode_to_ascii = build_unicode_to_ascii_table(data)
 
     # WL to AMS LaTeX (math mode) characters
     wl_to_amslatex = {
@@ -253,6 +286,7 @@ def compile_tables(data: dict) -> dict:
         "operator-to-ascii": operator_to_ascii,
         "operator-to-unicode": operator_to_unicode,
         "unicode-to-amslatex": unicode_to_amslatex,
+        "unicode-to-ascii": unicode_to_ascii,
         "unicode-to-latex": unicode_to_latex,
         "unicode-operators": unicode_to_operator,
         "unicode-to-wl-dict": unicode_to_wl_dict,
@@ -288,6 +322,7 @@ ALL_FIELDS = [
     "operator-to-unicode",
     #   "unicode-operators",  # not used yet
     "unicode-to-amslatex",
+    "unicode-to-ascii",
     "unicode-to-latex",
     "unicode-to-wl-dict",
     "unicode-to-wl-re",

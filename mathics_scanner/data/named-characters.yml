@@ -101,7 +101,7 @@
 #     amslatex: "\={a}"  is incorrect; \= is an invalid escape sequence.
 
 AAcute:
-  ascii: "A'"
+  ascii: "a'"
   esc-alias: a'
   has-unicode-inverse: false
   is-letter-like: true
@@ -146,6 +146,7 @@ AddTo:
   operator-name: AddTo
 
 ADoubleDot:
+  ascii: 'a"'
   esc-alias: a"
   has-unicode-inverse: false
   is-letter-like: true
@@ -169,7 +170,7 @@ AE:
   wl-unicode-name: LATIN SMALL LETTER AE
 
 AGrave:
-  ascii: 'A`'
+  ascii: 'a`'
   esc-alias: a`
   has-unicode-inverse: false
   is-letter-like: true
@@ -8563,7 +8564,7 @@ RawVerticalBar:
   wl-unicode-name: VERTICAL LINE
 
 RegisteredTrademark:
-  ascii: "(R)"
+  ascii: '(R)'
   esc-alias: rtm
   has-unicode-inverse: false
   is-letter-like: true
