@@ -84,9 +84,13 @@ def test_operators():
     for k, v in yaml_data.items():
         if "ascii" in v:
             if len(v["ascii"]) > 1:
-                assert (
-                    "operator-name" in v
-                ), f"In {k}: ASCII with more than one characters must be an operator"
+                # TODO: Check why this assertion was here. In WMA,
+                # `\[AAcute]` which is a letter-like character,
+                # is translated to `a'` in `"ASCII"` encoding.
+                #
+                # assert (
+                #    "operator-name" in v
+                # ), f"In {k}: ASCII with more than one characters must be an operator"
                 pass
         else:
             assert (

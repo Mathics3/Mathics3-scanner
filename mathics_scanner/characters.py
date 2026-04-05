@@ -178,7 +178,7 @@ CHARACTER_TO_NAME = {char: rf"\[{name}]" for name, char in NAMED_CHARACTERS.item
 UNICODE_CHARACTER_TO_ASCII = CHARACTER_TO_NAME.copy()
 if (
     "operator-to-ascii" in NAMED_CHARACTERS_COLLECTION
-    and "operator_to_unicode" in NAMED_CHARACTERS_COLLECTION
+    and "operator-to-unicode" in NAMED_CHARACTERS_COLLECTION
 ):
     UNICODE_CHARACTER_TO_ASCII.update(
         {
@@ -189,9 +189,9 @@ if (
     )
     # All these Unicode characters have ASCII equivalents
     # but are not in the tables.
+    # TODO: pick them from WL-unicode entries in tables.
     UNICODE_CHARACTER_TO_ASCII.update(
         {
-            NAMED_CHARACTERS_COLLECTION["operator_to_unicode"]["Times"]: r" x ",
             "": r"\[DifferentialD]",
         }
     )
