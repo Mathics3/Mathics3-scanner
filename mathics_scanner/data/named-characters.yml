@@ -11070,6 +11070,7 @@ Xnor:
 
 Xor:
   amslatex: '\oplus' # The WL veebar-looking symbol isn't in AMSLaTeX
+  ascii: 'xor'
   esc-alias: xor
   has-unicode-inverse: false
   is-letter-like: false

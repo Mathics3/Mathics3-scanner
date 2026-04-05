@@ -36,13 +36,18 @@ def build_unicode_to_ascii_table(data):
         unicode_equivalent = entry.get("unicode-equivalent", None)
         if unicode_equivalent is not None:
             # not already an ascii character
-            if len(unicode_equivalent) != 1 or ord(unicode_equivalent) > 127:
+            if unicode_equivalent != ascii_equiv and (
+                len(unicode_equivalent) != 1 or ord(unicode_equivalent) > 127
+            ):
                 result[unicode_equivalent] = ascii_equiv
         wl_unicode = entry.get("wl-unicode", None)
         if wl_unicode is not None and wl_unicode not in result:
             # not ascii
-            if len(wl_unicode) != 1 or ord(wl_unicode) > 127:
+            if wl_unicode != ascii_equiv and (
+                len(wl_unicode) != 1 or ord(wl_unicode) > 127
+            ):
                 result[wl_unicode] = ascii_equiv
+
     return result
 
 
