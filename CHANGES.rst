@@ -1,6 +1,16 @@
 CHANGES
 =======
 
+10.0.0
+-----
+
+More YAML/JSON tables added. mathics-core now imports values via ``mathics.characters``. Previously it
+created JSON files on its own.
+
+Python 3.14 supported. Python 3.10 support has been dropped. (It may still work, but is not supported)
+Minor corrections to YAML table entries.
+
+
 2.0.0
 -----
 
