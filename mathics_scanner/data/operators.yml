@@ -19,7 +19,7 @@
 # in Mathics3 (core), and an optional "Precedence-Function" which can be used
 # to match WMA builtin-function Precedence[] values.
 
-# In the Mathics3 parser of Mathics core, the integer "precedence"
+# In the parser of Mathics3 core, the integer "precedence"
 # listed here is an integer used in specifying the order
 # operations occur when one operator is juxtaposed against another
 # operator.  A higher value means that the operator binds before an
@@ -31,7 +31,7 @@
 # |-> to get treated as one unit and not split into two operators like
 # | and ->. So the precedence of |-> has to be higher than |.
 #
-# Note: When there was a mismatch between Jacobson's table and the old
+# Note: When there was a mismatch between Jacobson's table and older
 # Mathics code, we've used the old Mathics code.
 #
 # Boxing Operator Precedence

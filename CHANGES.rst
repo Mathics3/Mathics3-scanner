@@ -2,7 +2,11 @@ CHANGES
 =======
 
 10.0.0
------
+------
+
+April 18, 2026
+
+Supports Python 3.14. Python 3.10 support has been dropped. While Python 3.10 may still work, it is not supported.
 
 More YAML/JSON tables added. mathics-core now imports values via ``mathics.characters``. Previously it
 created JSON files on its own.
@@ -18,6 +22,9 @@ Corrections to YAML table entries, e.g. "latex" field additional/corrections in 
 
 Numerous spelling corrections were performed over the code.
 
+The name ``Mathics3`` replaces ``Mathics``. ``Mathics`` was the monolithic
+Python 2-ish code. Mathics3 has rewritten a number of major
+subcomponents, and the scanner and the character and operators tables in YAML are now in this repository.
 
 2.0.0
 -----
@@ -160,7 +167,7 @@ Tag unicode operators that have no definition and add the ability to dump them. 
 1.1.2
 -----
 
-Release 1.1.1 introduced a small bad interaction with Mathics and the
+Release 1.1.1 introduced a small bad interaction with Mathics3 and the
 unicode infix form of ``Function[]``.
 
 In our master table, when there is a unicode operator like there is for "Function",

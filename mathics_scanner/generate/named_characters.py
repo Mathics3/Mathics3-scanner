@@ -219,7 +219,7 @@ def compile_tables(data: dict) -> dict:
             ascii_operators.append(v["ascii"])
             ascii_operator_to_character_symbol[ascii_name] = rf'\[{v["operator-name"]}]'
             ascii_operator_to_symbol[ascii_name] = v["operator-name"]
-            # Mathics core stores the ascii operator value, Use that to get standard unicode
+            # Mathics3 core stores the ascii operator value, Use that to get standard unicode
             # symbol, and failing use the ASCII sequence.
             ascii_operator_to_unicode[ascii_name] = v.get(
                 "unicode-equivalent", v.get("ascii")

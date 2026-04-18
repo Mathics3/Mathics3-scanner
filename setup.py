@@ -54,6 +54,6 @@ CMDCLASS = {"build_py": build_py}
 
 setup(
     cmdclass=CMDCLASS,
-    # don't pack Mathics in egg because of media files, etc.
+    # don't pack Mathics3 an in egg because of media files, etc.
     zip_safe=False,
 )

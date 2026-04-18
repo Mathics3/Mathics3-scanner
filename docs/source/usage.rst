@@ -2,7 +2,7 @@
 Using mathics-scanner
 =====================
 
-This is used as the scanner inside `Mathics <https://mathics.org>`_ but it can
+This is used as the scanner inside `Mathics3 <https://mathics.org>`_ but it can
 also be used for tokenizing and formatting Wolfram Language code. In fact we
 intend to write one. This library is also quite usefull if you need to work
 with Wolfram Language named character and convert them to various formats.
@@ -15,4 +15,3 @@ with Wolfram Language named character and convert them to various formats.
 - To convert between qualified names of named characters (such ``FormalA`` for
   ``\[FormalA]``) and Wolfram's internal representation use the
   ``m̀athics_scanner.characters.named_characters`` dictionary.
-

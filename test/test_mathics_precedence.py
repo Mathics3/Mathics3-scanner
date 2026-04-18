@@ -2,7 +2,7 @@
 Test operator precedences
 =========================
 
-Precedence values reported in the Mathics Scanner tables do not always match
+Precedence values reported in the Mathics3 Scanner tables do not always match
 with the values reported by `Precedence[...]` in WMA. As it was
 pointed out by Robert L. Jacobson in
 [https://www.robertjacobson.dev/posts/2018-09-03-generalizing-pemdas-what-is-an-operator/]
@@ -90,14 +90,14 @@ SYMBOLS_SORTED_BY_PRECEDENCE = [
     # between RightTee and UpTee, both with
     # a precedence value of 190.
     #
-    # This behavior is not the one in Mathics. For example,
+    # This behavior is not the one in Mathics3. For example,
     # the input
     # a\[RoundImplies]b\[UpTee]c//FullForm
     # Is parsed in WMA as
     # RoundImplies[a,UpTee[b,c]],
-    # But in Mathics as
+    # But in Mathics3 as
     # UpTee[RoundImplies[a, b], c]
-    "RoundImplies",  # WMA->240, Mathics->200, Must be ~193
+    "RoundImplies",  # WMA->240, Mathics3->200, Must be ~193
     "UpTee",  # 190   Must be ~197
     "Implies",  # 200
     "Equivalent",
@@ -266,8 +266,8 @@ SYMBOLS_SORTED_BY_PRECEDENCE = [
     "SmallCircle",
     "Square",  # 540
     "Del",  # In WMA, has the same precedence as DifferentialD and CapitalDifferentialD
-    "CapitalDifferentialD",  # Mathics 560, WMA 550
-    "DifferentialD",  # Mathics 560, WMA, 550
+    "CapitalDifferentialD",  # Mathics3 560, WMA 550
+    "DifferentialD",  # Mathics3 560, WMA, 550
     "DoubleDownArrow",  # 580
     "DoubleLongLeftArrow",
     "DoubleLongLeftRightArrow",
@@ -410,7 +410,7 @@ def test_precedence_order():
         ),
     ],
 )
-@pytest.mark.xfail(reason="Remove xfail when addressed in Mathics core")
+@pytest.mark.xfail(reason="Remove xfail when addressed in Mathics3 core")
 def test_parsing(str_expr, str_expected):
     check_evaluation(str_expr, str_expected, hold_expected=True)
 
