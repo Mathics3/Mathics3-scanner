@@ -2,7 +2,7 @@
 
 |Packaging status|
 
-Mathics Character Tables and Scanner
+Mathics3 Character Tables and Scanner
 =====================================
 
 This repository really contains two things:
