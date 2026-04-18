@@ -1,6 +1,24 @@
 CHANGES
 =======
 
+10.0.0
+-----
+
+More YAML/JSON tables added. mathics-core now imports values via ``mathics.characters``. Previously it
+created JSON files on its own.
+
+#. `PR #173 <https://github.com/Mathics3/mathics-core/pull/173>`_  Python 3.14 supported. Python 3.10 support has been dropped. (It may still work, but is not supported.)
+#. `PR #158 <https://github.com/Mathics3/mathics-core/pull/158>`_  Name Pattern token introduced to handle ``?`` and ``??`` operands.
+#. `PR #156 <https://github.com/Mathics3/mathics-core/pull/156>`_  Token names align more closely with ``CodeParser`Tokenize``.
+#. `PR #149 <https://github.com/Mathics3/mathics-core/pull/142>`_  Add YAML/JSON table for box grouping characters
+#. `PR #147 <https://github.com/Mathics3/mathics-core/pull/147>`_  Disambiguate Unicode for \[Rule] and \[DirectedEdge].
+#. `PR #145 <https://github.com/Mathics3/mathics-core/pull/145>`_  Add Unicode to ASCII conversion table to named characters
+
+Corrections to YAML table entries, e.g. "latex" field additional/corrections in named characters.
+
+Numerous spelling corrections were performed over the code.
+
+
 2.0.0
 -----
 
@@ -19,6 +37,10 @@ Tokenization support for Box Input operator ``\*`` was added.
 
 Small YML changes were made to reflect a better understanding of boxing
 operators. In particular, ``\*`` is not a (prefix) operator.
+
+More AMSLaTeX translations added for named characters.
+
+Handle escape sequences in string literals.
 
 Internals
 +++++++++

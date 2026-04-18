@@ -1,6 +1,51 @@
---- ChangeLog	2025-07-19 07:46:19.874915459 -0400
-+++ ChangeLog-spell-corrected	2025-07-19 07:45:31.721848808 -0400
-@@ -51,7 +51,7 @@
+--- ChangeLog	2026-04-08 21:05:39.299635995 -0400
++++ ChangeLog-spell-corrected	2026-04-08 21:08:32.699729697 -0400
+@@ -63,7 +63,7 @@
+ 
+ 2026-03-21  R. Bernstein <rocky@users.noreply.github.com>
+ 
+-	* mathics_scanner/data/named-characters.yml, test/test_tokeniser.py: 
++	* mathics_scanner/data/named-characters.yml, test/test_tokeniser.py:
+ 	Remove mention of Slot* as operators (#164) Right now, this interacts badly with ToString and Boxing in
+ 	mathics-core When that's addressed, we should reinstate these.
+ 
+@@ -99,7 +99,7 @@
+ 
+ 2026-03-15  rocky <rb@dustyfeet.com>
+ 
+-	* mathics_scanner/data/operators.yml, mathics_scanner/version.py: 
++	* mathics_scanner/data/operators.yml, mathics_scanner/version.py:
+ 	Revert associativity of Pattern!?
+ 
+ 2026-03-15  rocky <rb@dustyfeet.com>
+@@ -166,7 +166,7 @@
+ 	* .github/workflows/mathics3-doctest.yml,
+ 	mathics_scanner/tokeniser.py, test/test_tokeniser.py: Follow
+ 	CodeTokenize Token names more closely (#156) Use `CodeTokenize` token names more often. In particular: * Raw{Left,Right}Parenthesis->{Open,Close}Paren *
+-	{Left,Right}Assocation -> LessBar, BarGreater.
++	{Left,Right}Association -> LessBar, BarGreater.
+ 
+ 2026-03-08  R. Bernstein <rocky@users.noreply.github.com>
+ 
+@@ -254,7 +254,7 @@
+ 2026-02-07  R. Bernstein <rocky@users.noreply.github.com>
+ 
+ 	* mathics_scanner/data/grouping-characters.yml,
+-	mathics_scanner/data/named-characters.yml, test/test_grouping.py: 
++	mathics_scanner/data/named-characters.yml, test/test_grouping.py:
+ 	First cut at grouping information (#149)
+ 
+ 2026-02-06  R. Bernstein <rocky@users.noreply.github.com>
+@@ -271,7 +271,7 @@
+ 
+ 	* mathics_scanner/characters.py,
+ 	mathics_scanner/data/named-characters.yml,
+-	mathics_scanner/tokeniser.py, test/test_general_yaml_sanity.py: 
++	mathics_scanner/tokeniser.py, test/test_general_yaml_sanity.py:
+ 	Reassign Unicode for `\[Rule]` and `\[DirectedEdge]` (#147) Reassign Unicode assignments for `\[Rule]` and `\[DirectedEdge]`
+ 	which shared the Unicode for `\[RightArrow]`.  `\[Rule]`, `\[RightArrow]`, and `\[DirectedEdge]` need distinct
+ 	Unicode and glyph symbols. Use a Unicode glyph that matches the
+@@ -445,7 +445,7 @@
  	Tokenizer.get_more_input * Bang more on mathics3-tokens Start to show syntax errors.  * Start going over error messages...  In particular errors with octal digits and incomplete named errors.
  	Go over docstrings in escape_sequences.py * Improve error handling...  and add more tests.  * Improve scanner...  named-characters.yml: \[Mu] is letterlike tokeniser.py: Correct
  	identifier or pattern for those having letterlike escape sequences * Handle EscapSequence errors better * Handle embedded escape sequences in Symbols...  and also add Theta to the list of letterlike symbols * WIP - bang on Symbol tokenization with backslash Replace .format() with f-strings. Add comments around Symbol
@@ -9,7 +54,7 @@
  	smaller chunks.  * Small bugs related to escape-character handling NamedChracterSyntax should be a new-style TranslateError self.code
  	-> self.source_text misc sntx_message() fixes. Document better.  * Use git branch for testing Mathics * Revise Scanner error exception class TranslateError, TranslateErrorNew, ScanError now become ScannerError * Let's use 3.12 in CI testing it should be just a little bit faster (and it is more modern) * Small tidying changes to comments * ScannerError -> SyntaxError Use more direct and simpler error class name that is is more like
  	its other subclassed errors.  * More tests * One more escape test * Allow escape space "\ " +  more string tests * Start unit test for comments * Fix a doc spelling typo + minor doc tweak * invalid escape sequences inside strings...  An invalid escape sequence inside a string, like "\(a \+\)" is not
-@@ -69,7 +69,7 @@
+@@ -463,7 +463,7 @@
  	mathics_scanner/characters.py,
  	mathics_scanner/data/named-characters.yml,
  	mathics_scanner/errors.py, mathics_scanner/mathics3_tokens.py,
@@ -18,7 +63,7 @@
  	Preparatory changes for prescanner removal (#127) To handle escape sequences better, such as ignoring them in
  	comments, branch revise-escape-sequence-scanning was started as more
  	major refactor.  However, that has become too large and is too hard to get right.
-@@ -156,7 +156,7 @@
+@@ -550,7 +550,7 @@
  2025-01-18  R. Bernstein <rocky@users.noreply.github.com>
  
  	* mathics_scanner/mathics3_tokens.py, mathics_scanner/tokeniser.py,
@@ -27,7 +72,7 @@
  	Add mathics tokens cli (#115) * command-line routine showing Mathics3 tokenization * Add --CodeTokenize option . Option --CodeTokenize (-C) on
  	mathics3-tokens shows tokens more like it is shown in CodeParser's
  	CodeTokenize.  * Remove line number in In[] and Out[]. We don't have a % retrieval
-@@ -164,7 +164,7 @@
+@@ -558,7 +558,7 @@
  
  2025-01-15  R. Bernstein <rocky@users.noreply.github.com>
  
@@ -36,7 +81,7 @@
  	\smallmid. more unicod refs.. (#118) Remove note 5 which is was wrong, and probably comes from the days
  	when I was combining operators with character symbols which is
  	wrong.  Possibly in the future, this will be reworked so Operators (like
-@@ -186,7 +186,7 @@
+@@ -580,7 +580,7 @@
  
  2025-01-08  rocky <rb@dustyfeet.com>
  
@@ -45,7 +90,7 @@
  	operator-precedence -> operator-precedences Note: Mathics-core will be broken until this is synchronized.
  
  2025-01-08  rocky <rb@dustyfeet.com>
-@@ -205,12 +205,12 @@
+@@ -599,12 +599,12 @@
  	test_character_table_consistency.py},
  	test/test_general_yaml_sanity.py, test/test_operators.py: Add
  	operator-to-amslatex and builtin-constants... (#114) operator-to-amslatex gives the AMSLaTeX string for unicode operator
@@ -60,7 +105,7 @@
  	Correct FractionBox and other small changes (#113)
  
  2025-01-03  R. Bernstein <rocky@users.noreply.github.com>
-@@ -253,7 +253,7 @@
+@@ -647,7 +647,7 @@
  2024-12-03  R. Bernstein <rocky@users.noreply.github.com>
  
  	* mathics_scanner/data/named-characters.yml,
@@ -69,7 +114,7 @@
  	operator tests yet again; update YAML comments... (#106) * Test_mathics_precedence needs not to fail work when mathics is   installed. Tweak failure messages * Update comments in character and operators YAML files.  * Remove Parse field in operators YML.
  
  2024-12-03  Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
-@@ -319,10 +319,10 @@
+@@ -713,10 +713,10 @@
  	mathics_scanner/data/operators.yml,
  	mathics_scanner/generate/operator_csv_to_yml.py,
  	mathics_scanner/tokeniser.py: tokenizer gets no-meaning infix ops
@@ -82,7 +127,7 @@
  	intoseparate variables for each type they can hold.  * Scanner uses operators json mm (#88, #89) * Change initialization of the tokenizer --------- Co-authored-by: Juan Mauricio Matera <matera@fisica.unlp.edu.ar>
  
  2024-11-23  rocky <rb@dustyfeet.com>
-@@ -351,7 +351,7 @@
+@@ -745,7 +745,7 @@
  	mathics_scanner/generate/build_operator_tables.py,
  	test/test_operators.py: Include no-meaning operators in JSON op
  	extraction (#85) Include no-meaning operators in JSON op extraction, separated by
@@ -91,7 +136,7 @@
  
  2024-11-18  R. Bernstein <rocky@users.noreply.github.com>
  
-@@ -393,8 +393,8 @@
+@@ -787,8 +787,8 @@
  2024-09-17  R. Bernstein <rocky@users.noreply.github.com>
  
  	* mathics_scanner/data/named-characters.yml,
@@ -102,7 +147,7 @@
  
  2024-09-09  R. Bernstein <rocky@users.noreply.github.com>
  
-@@ -578,7 +578,7 @@
+@@ -972,7 +972,7 @@
  2023-12-17  rocky <rb@dustyfeet.com>
  
  	* admin-tools/pyenv-versions,
@@ -111,7 +156,7 @@
  	Administrivia: typos and bump versions
  
  2023-08-23  rocky <rb@dustyfeet.com>
-@@ -681,7 +681,7 @@
+@@ -1075,7 +1075,7 @@
  	test/test_general_yaml_sanity.py,
  	test/test_has_unicode_inverse_sanity.py,
  	test/test_table_consistency.py, test/test_unicode_equivalent.py: Go
@@ -120,7 +165,7 @@
  	"unicode-equivalent" there is no unicode-equivalent, but
  	has-unicode-inverse is set.  * Add test that unicode-equivalent isn't the same things as ascii
  
-@@ -807,7 +807,7 @@
+@@ -1201,7 +1201,7 @@
  
  	* mathics_scanner/data/named-characters.yml,
  	mathics_scanner/tokeniser.py: Change the precedence of `|->`
@@ -129,7 +174,16 @@
  	by `->`
  
  2021-09-27  rocky <rb@dustyfeet.com>
-@@ -906,18 +906,18 @@
+@@ -1268,7 +1268,7 @@
+ 
+ 2021-07-31  R. Bernstein <rocky@users.noreply.github.com>
+ 
+-	* : Merge pull request #34 from susnux/master Fix shbang of rl_inputrc.py
++	* : Merge pull request #34 from susnux/master Fix "#!" of rl_inputrc.py
+ 
+ 2021-07-10  rocky <rb@dustyfeet.com>
+ 
+@@ -1300,18 +1300,18 @@
  2021-06-29  rocky <rb@dustyfeet.com>
  
  	* mathics_scanner/data/named-characters.yml,
@@ -151,7 +205,7 @@
  
  2021-06-28  rocky <rb@dustyfeet.com>
  
-@@ -938,7 +938,7 @@
+@@ -1332,7 +1332,7 @@
  
  2021-06-27  rocky <rb@dustyfeet.com>
  
@@ -160,7 +214,7 @@
  	Get ready for release 1.2.3
  
  2021-06-26  rocky <rb@dustyfeet.com>
-@@ -1028,7 +1028,7 @@
+@@ -1422,7 +1422,7 @@
  	mathics_scanner/tokeniser.py, mathics_scanner/version.py, setup.py,
  	test/test_has_unicode_inverse_sanity.py,
  	test/test_letterlikes_sanity.py, test/test_table_consistency.py,
@@ -169,7 +223,7 @@
  	Blacken files
  
  2021-06-21  rocky <rb@dustyfeet.com>
-@@ -1069,7 +1069,7 @@
+@@ -1463,7 +1463,7 @@
  
  	* .github/workflows/osx.yaml, .github/workflows/ubuntu.yaml,
  	.github/workflows/windows.yml, mathics_scanner/characters.py,
@@ -178,7 +232,7 @@
  	Administrivia & make ujson optional * It's not clear that pyston-2.2 support ujson so make it optional * In github workflows use requirements-dev.txt * revise requirement-dev to remove click (in setup.py) and add ujson * setup.py make ujson optional * version.py: bump to dev
  
  2021-05-14  rocky <rb@dustyfeet.com>
-@@ -1195,7 +1195,7 @@
+@@ -1589,7 +1589,7 @@
  2021-04-03  rocky <rb@dustyfeet.com>
  
  	* mathics_scanner/data/named-characters.yml,
@@ -187,7 +241,7 @@
  
  2021-04-03  rocky <rb@dustyfeet.com>
  
-@@ -1269,7 +1269,7 @@
+@@ -1663,7 +1663,7 @@
  
  	* .github/workflows/osx.yaml, Makefile,
  	mathics_scanner/data/named-characters.yml, setup.py,
@@ -196,7 +250,7 @@
  	Start tagging operators Note: use WL name when there is no conflict for name of symbol.  A number of other small corrections: - Mark some symbols which are invertable when they are. However   this should be redone and invertability should be detected   automatically.  - small correction in macos CI - AUTHORS.txt reduced to those who worked in this, rather than
  	  Mathics in general - in tests prefer top-level tests when that is possible (i.e. test
  	  is not parameterized) - use relative import as "test" can be ambiguous and lead to
-@@ -1370,8 +1370,8 @@
+@@ -1764,8 +1764,8 @@
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -207,7 +261,7 @@
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
-@@ -1403,7 +1403,7 @@
+@@ -1797,7 +1797,7 @@
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -216,7 +270,7 @@
  	Fixed another errors in the YAML table
  
  2021-02-02  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
-@@ -1426,7 +1426,7 @@
+@@ -1820,7 +1820,7 @@
  
  2021-02-01  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -225,7 +279,7 @@
  	Documented stuff used by Mathics
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
-@@ -1446,7 +1446,7 @@
+@@ -1840,7 +1840,7 @@
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -234,7 +288,7 @@
  	Improved the general tests for YAML
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
-@@ -1475,22 +1475,22 @@
+@@ -1869,22 +1869,22 @@
  
  2021-01-31  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -261,7 +315,7 @@
  	Added sanity check for has-unicode-inverse and fixed the reound trip
  	tests
  
-@@ -1542,7 +1542,7 @@
+@@ -1936,7 +1936,7 @@
  
  2021-01-27  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -270,7 +324,7 @@
  	resolves the appropriate plain-text representation of a given
  	character
  
-@@ -1698,15 +1698,15 @@
+@@ -2092,15 +2092,15 @@
  
  2021-01-19  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
@@ -289,7 +343,7 @@
  
  2021-01-19  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
-@@ -1884,5 +1884,4 @@
+@@ -2278,5 +2278,4 @@
  
  2021-01-18  Pablo Emilio Escobar Gaviria <pablo-escobar@riseup.net>
  
