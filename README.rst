@@ -50,29 +50,21 @@ To regenerate JSON-format tables, run:
 
 ::
 
-   $ mathics3-generate-json-table
-   $ mathics3-generate-operator-json-table
-
-Without options, ``mathics3-generate-json-table`` produces the maximum set of correspondences.
-
-In most applications, though, you may need just a few of these. The
-``--field`` option can be used to narrow the list of entries to output in JSON. Run
-``mathics3-generate-json-table --help`` for a full list of fields.
-
+   $ bash admin-tools/make-JSON-tables.sh
 
 Utility for showing token parsing
 ---------------------------------
 
-There is a command-line utility, ``mathics3-tokens``, for showing how
+There is a command-line utility, ``mathics3-codeparser-tokenize``, for showing how
 an input stream is tokenized. The ``--CodeTokenize`` or ``-C`` option
-will try to show the token as it would appear using CodeTokenize. type
-``mathics3-tokens --help`` information on command-line options.
+will try to show the token similar to how it would appear using the ``CodeParser`CodeTokenize``. Type
+``mathics3-codeparser-tokenize --help`` information on command-line options.
 
 Implementation
 --------------
 
 For notes on the implementation of the packages or details on the conversion
-scheme please read `Implementation <https://mathics-scanner.readthedocs.io/en/latest/implementation.html>`_.
+scheme please read `Implementation <https:/https://mathics-development-guide.readthedocs.io/en/latest/code-overview/scanning.html>`_.
 
 Contributing
 ------------
