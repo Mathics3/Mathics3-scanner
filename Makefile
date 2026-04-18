@@ -82,11 +82,14 @@ check-mathics3:
 	MATHICS_CHARACTER_ENCODING="ASCII" $(PYTHON) -m mathics.docpipeline $o
 	pytest test/test_mathics_precedence.py
 
+#: Create ChangeLog from version control without corrections
+ChangeLog-without-corrections:
+	git log --pretty --numstat --summary | $(GIT2CL) >ChangeLog
+
 #: Remove ChangeLog
 rmChangeLog:
 	$(RM) ChangeLog || true
 
 #: Create a ChangeLog from git via git log and git2cl
-ChangeLog: rmChangeLog
-	git log --pretty --numstat --summary | $(GIT2CL) >$@
+ChangeLog: rmChangeLog ChangeLog-without-corrections
 	patch -p0 ChangeLog < ChangeLog-spell-corrected.diff
