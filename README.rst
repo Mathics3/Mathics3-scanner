@@ -64,7 +64,7 @@ Implementation
 --------------
 
 For notes on the implementation of the packages or details on the conversion
-scheme please read `Scanning <https:/https://mathics-development-guide.readthedocs.io/en/latest/code-overview/scanning.html>`_.
+scheme, please read `Scanning <https:/https://mathics-development-guide.readthedocs.io/en/latest/code-overview/scanning.html>`_.
 
 Contributing
 ------------

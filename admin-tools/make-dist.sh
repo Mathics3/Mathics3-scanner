@@ -1,5 +1,5 @@
 #!/bin/bash
-PACKAGE=mathics-scanner
+PACKAGE=Mathics3-scanner
 
 # FIXME put some of the below in a common routine
 function finish {
@@ -18,6 +18,6 @@ cd ..
 source mathics_scanner/version.py
 echo $__version__
 
-python setup.py bdist_wheel
+python -m build --wheel
 python ./setup.py sdist
 finish

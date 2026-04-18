@@ -1,5 +1,5 @@
-Welcome to mathics-scanner's documentation!
-===========================================
+Welcome to Mathics3-scanner's documentation!
+============================================
 
 This is the tokeniser or scanner portion for the Wolfram Language.
 

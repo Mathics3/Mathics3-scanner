@@ -1,6 +1,6 @@
-=====================
-Using mathics-scanner
-=====================
+======================
+Using Mathics3-scanner
+======================
 
 This is used as the scanner inside `Mathics3 <https://mathics.org>`_ but it can
 also be used for tokenizing and formatting Wolfram Language code. In fact we

@@ -43,7 +43,7 @@ develop: mathics_scanner/data/boxing-characters.json mathics_scanner/data/named-
 dist: admin-tools/make-dist.sh
 	$(SHELL) admin-tools/make-dist.sh
 
-#: Install mathics-scanner
+#: Install Mathics3-scanner
 install: build
 	$(PYTHON) setup.py install
 
