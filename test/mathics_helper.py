@@ -8,7 +8,7 @@ from mathics.session import MathicsSession
 
 import_and_load_builtins()
 
-# Set up a Mathics session with definitions.
+# Set up a Mathics3 session with definitions.
 # For consistency set the character encoding ASCII which is
 # the lowest common denominator available on all systems.
 session = MathicsSession(character_encoding="ASCII")
@@ -45,7 +45,7 @@ def check_evaluation(
     expected_messages: Optional[tuple] = None,
 ):
     """
-    Helper function to test Mathics expression against
+    Helper function to test a Mathics3 expression against
     its results.
 
     Compares the expressions represented by ``str_expr`` and  ``str_expected`` by

@@ -30,6 +30,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Scientific/Engineering",
@@ -54,7 +55,7 @@ full = [
 mathics3-make-boxing-character-json = "mathics_scanner.generate.boxing_characters:main"
 mathics3-make-named-character-json = "mathics_scanner.generate.named_characters:main"
 mathics3-make-operator-json = "mathics_scanner.generate.operators:main"
-mathics3-code-tokenize = "mathics_scanner.mathics3_code_tokenize:main"
+mathics3-codeparser-tokenize = "mathics_scanner.mathics3_code_tokenize:main"
 
 [tool.setuptools]
 packages = [

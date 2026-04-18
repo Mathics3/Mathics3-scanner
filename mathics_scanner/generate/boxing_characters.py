@@ -13,7 +13,18 @@ import yaml
 
 # Silence warnings about JSON tables not existing
 os.environ["MATHICS3_TABLE_GENERATION"] = "true"
-from mathics_scanner.version import __version__  # noqa
+try:
+    from mathics_scanner.version import __version__  # noqa
+except ImportError:
+    import ast
+    from pathlib import Path
+
+    version_file = Path(__file__).parent.parent / "version.py"
+    version_content = version_file.read_text()
+    version_line = [
+        line for line in version_content.split("\n") if line.startswith("__version__")
+    ][0]
+    __version__ = ast.literal_eval(version_line.split("=")[1].strip().split("#")[0])
 
 
 def compile_tables(data: dict) -> dict:

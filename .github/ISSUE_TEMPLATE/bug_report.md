@@ -39,7 +39,7 @@ If this is too long, then try narrowing the problem to something short.
 
 <!-- _This information can be helpful...
 
-**All: Mathics version, Installed Python Python packages.
+**All: Mathics3 version, Installed Python Python packages.
 
 In addition
 

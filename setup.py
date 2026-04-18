@@ -39,13 +39,23 @@ def get_srcdir():
 
 
 class build_py(setuptools_build_py):
+    """
+    The "run" method below of class gets invoked when setup.py is run through
+    setuptools.
+
+    Here, we just invoke ./admin-tools/make-JSON-tables.sh.
+    """
+
     def run(self):
-        for table_type in ("boxing-character", "named-character", "operator"):
-            json_data_file = osp.join("data", f"{table_type}.json")
-            json_path = osp.join("mathics-scanner", json_data_file)
-            if not osp.exists(json_path):
-                os.system(f"mathics3-make-{table_type}-json -o {json_path}")
-            self.distribution.package_data["Mathics-Scanner"].append(json_data_file)
+        """
+        If you need to debug this, just extract this method, remove "self" above
+        and save it in a standalone Python file without the setuptools_build_py.run(self)
+        call below.
+        """
+        srcdir = get_srcdir()
+        cmd = f"bash {osp.join(srcdir, 'admin-tools', 'make-JSON-tables.sh')}"
+        print(cmd)
+        os.system(cmd)
         setuptools_build_py.run(self)
 
 
@@ -53,7 +63,7 @@ CMDCLASS = {"build_py": build_py}
 
 
 setup(
-    cmdclass=CMDCLASS,
-    # don't pack Mathics in egg because of media files, etc.
+    cmdclass=CMDCLASS,  # Set up to run build_py.run()
+    # don't pack Mathics3 an in egg because of media files, etc.
     zip_safe=False,
 )

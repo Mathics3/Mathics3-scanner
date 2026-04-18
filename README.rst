@@ -64,7 +64,8 @@ Implementation
 --------------
 
 For notes on the implementation of the packages or details on the conversion
-scheme please read `Scanning <https:/https://mathics-development-guide.readthedocs.io/en/latest/code-overview/scanning.html>`_.
+scheme, please read `Mathics3 scanner's documentation <https://mathics3-scanner-and-yaml-tables-for-characters-and-operators.readthedocs.io/en/latest/>`_ or
+`Scanning section <https://mathics-development-guide.readthedocs.io/en/latest/code-overview/scanning.html>`_ of the Mathics3 User and Developers Guide.
 
 Contributing
 ------------

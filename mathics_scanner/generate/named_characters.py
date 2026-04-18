@@ -2,6 +2,7 @@
 # This scripts reads the data from named-characters and converts it to the
 # format used by the library internally
 
+import ast
 import json
 import os
 import re
@@ -13,7 +14,18 @@ import yaml
 
 # Silence warnings about JSON tables not existing
 os.environ["MATHICS3_TABLE_GENERATION"] = "true"
-from mathics_scanner.version import __version__  # noqa
+
+try:
+    from mathics_scanner.version import __version__  # noqa
+except ImportError:
+    import ast
+
+    version_file = Path(__file__).parent.parent / "version.py"
+    version_content = version_file.read_text()
+    version_line = [
+        line for line in version_content.split("\n") if line.startswith("__version__")
+    ][0]
+    __version__ = ast.literal_eval(version_line.split("=")[1].strip().split("#")[0])
 
 
 def build_unicode_to_ascii_table(data):
@@ -219,7 +231,7 @@ def compile_tables(data: dict) -> dict:
             ascii_operators.append(v["ascii"])
             ascii_operator_to_character_symbol[ascii_name] = rf'\[{v["operator-name"]}]'
             ascii_operator_to_symbol[ascii_name] = v["operator-name"]
-            # Mathics core stores the ascii operator value, Use that to get standard unicode
+            # Mathics3 core stores the ascii operator value, Use that to get standard unicode
             # symbol, and failing use the ASCII sequence.
             ascii_operator_to_unicode[ascii_name] = v.get(
                 "unicode-equivalent", v.get("ascii")

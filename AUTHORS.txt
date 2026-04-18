@@ -7,7 +7,7 @@ Up until around  2017 was maintained by:
 - Angus Griffith @sn6uv
 - Ben Jones @bnjones
 
-The current module is maintained by the Mathics Team
+The current module is maintained by the Mathics3 Team
 
 - Pablo Emilio Escobar Gaviria @GarkGarcia
 - Mauricio Matera @mmatera

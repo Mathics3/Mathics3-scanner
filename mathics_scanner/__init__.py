@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-This is the tokeniser or scanner portion for the Wolfram Language.
+This is the tokenizer or scanner portion for the Wolfram Language.
 
 As such, it also contains a full set of translation between Wolfram Language
 named characters, their Unicode/ASCII equivalents and code-points.
@@ -9,6 +9,7 @@ named characters, their Unicode/ASCII equivalents and code-points.
 from mathics_scanner.characters import (
     ALIASED_CHARACTERS,
     NAMED_CHARACTERS,
+    replace_box_unicode_with_ascii,
     replace_unicode_with_wl,
     replace_wl_with_plain_text,
 )
@@ -42,6 +43,7 @@ __all__ = [
     # "Tokeniser",
     "__version__",
     # "is_symbol_name",
+    "replace_box_unicode_with_ascii",
     "replace_unicode_with_wl",
     "replace_wl_with_plain_text",
 ]

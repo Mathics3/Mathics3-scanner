@@ -8,8 +8,8 @@ for more information on character aliases.
 """
 import sys
 
+from mathics_scanner.characters import ALIASED_CHARACTERS
 from mathics_scanner.characters import replace_wl_with_plain_text as r
-from mathics_scanner.characters import aliased_characters
 
 
 def _escape(s: str) -> str:
@@ -23,7 +23,7 @@ def _format(c: str, use_unicode: bool) -> str:
     if key == "nl":
         val = "\\n"
     else:
-        val = _escape(r(aliased_characters[c], use_unicode=use_unicode))
+        val = _escape(r(ALIASED_CHARACTERS[c], use_unicode=use_unicode))
 
     return f'"\\e{key}\\e": "{val}"\n'
 
@@ -34,7 +34,7 @@ def generate_inputrc(fd=sys.stdout, use_unicode=True) -> None:
     their corresponding plain-text representation (full Unicode or strick
     ASCII)
     """
-    for alias in aliased_characters:
+    for alias in ALIASED_CHARACTERS:
         try:
             fd.write(_format(alias, use_unicode))
         except UnicodeEncodeError:

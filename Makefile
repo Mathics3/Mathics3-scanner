@@ -1,8 +1,8 @@
 # A GNU Makefile to run various tasks - compatibility for us old-timers.
 
-# Note: This makefile include remake-style target comments.
+# Note: This makefile includes remake-style target comments.
 # These comments before the targets start with #:
-# remake --tasks to shows the targets and the comments
+# "remake --tasks" shows the targets and the comments
 
 GIT2CL ?= admin-tools/git2cl
 PYTHON ?= python
@@ -43,7 +43,7 @@ develop: mathics_scanner/data/boxing-characters.json mathics_scanner/data/named-
 dist: admin-tools/make-dist.sh
 	$(SHELL) admin-tools/make-dist.sh
 
-#: Install mathics-scanner
+#: Install Mathics3-scanner
 install: build
 	$(PYTHON) setup.py install
 
