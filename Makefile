@@ -11,6 +11,7 @@ RM  ?= rm
 PIP_INSTALL_OPTS ?=
 
 .PHONY: all build \
+   ChangeLog-without-corrections \
    check check-full check-mathics3 clean \
    develop dist doc \
    inputrc-no-unicode \

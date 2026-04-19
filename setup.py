@@ -1,28 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-"""Setuptools based setup script for Mathics.
+"""Setuptools based setup script for Mathics3 Scanner.
 
 For the easiest installation just type the following command (you'll probably
 need root privileges):
 
-    python setup.py install
-
-This will install the library in the default location. For instructions on
-how to customize the install procedure read the output of:
-
-    python setup.py --help install
-
-In addition, there are some other commands:
-
-    python setup.py clean -> will clean all trash (*.pyc and stuff)
-
-To get a full list of available commands, read the output of:
-
-    python setup.py --help-commands
-
-Or, if all else fails, feel free to write to the mathics users list at
-mathics-users@googlegroups.com and ask for help.
+    pip install -e .
 """
 
 import os
