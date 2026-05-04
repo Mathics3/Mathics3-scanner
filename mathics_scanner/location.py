@@ -75,6 +75,9 @@ def get_location_file_line(
         filename = code.co_filename
         line_number = code.co_firstlineno
     else:
-        filename = MATHICS3_PATHS[loc.container]
+        try:
+            filename = MATHICS3_PATHS[loc.container]
+        except IndexError:
+            filename = "???"
         line_number = loc.start_line
     return filename, line_number
