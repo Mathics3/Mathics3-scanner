@@ -3532,7 +3532,7 @@ Ellipsis:
 EmptyCircle:
   esc-alias: eci
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25CB"
   unicode-equivalent-name: WHITE CIRCLE
   unicode-reference: https://www.compart.com/en/unicode/U+25CB
@@ -3542,7 +3542,7 @@ EmptyCircle:
 
 EmptyDiamond:
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25C7"
   unicode-equivalent-name: WHITE DIAMOND
   unicode-reference: https://www.compart.com/en/unicode/U+25C7
@@ -3552,7 +3552,7 @@ EmptyDiamond:
 
 EmptyDownTriangle:
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25BD"
   unicode-equivalent-name: WHITE DOWN-POINTING TRIANGLE
   unicode-reference: https://www.compart.com/en/unicode/U+25BD
@@ -3562,7 +3562,7 @@ EmptyDownTriangle:
 
 EmptyRectangle:
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25AF"
   unicode-equivalent-name: WHITE VERTICAL RECTANGLE
   unicode-reference: https://www.compart.com/en/unicode/U+25AF
@@ -3574,7 +3574,7 @@ EmptySet:
   amslatex: '\varnothing'
   esc-alias: es
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u2205"
   unicode-equivalent-name: EMPTY SET
   unicode-reference: https://www.compart.com/en/unicode/U+2205
@@ -3585,7 +3585,7 @@ EmptySet:
 EmptySmallCircle:
   esc-alias: esci
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25E6"
   unicode-equivalent-name: WHITE BULLET
   unicode-reference: https://www.compart.com/en/unicode/U+25E6
@@ -3596,7 +3596,7 @@ EmptySmallCircle:
 EmptySmallSquare:
   esc-alias: essq
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25FB"
   unicode-equivalent-name: WHITE MEDIUM SQUARE
   unicode-reference: https://www.compart.com/en/unicode/U+25FB
@@ -3607,7 +3607,7 @@ EmptySmallSquare:
 EmptySquare:
   esc-alias: esq
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25A1"
   unicode-equivalent-name: WHITE SQUARE
   unicode-reference: https://www.compart.com/en/unicode/U+25A1
@@ -3617,7 +3617,7 @@ EmptySquare:
 
 EmptyUpTriangle:
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25B3"
   unicode-equivalent-name: WHITE UP-POINTING TRIANGLE
   unicode-reference: https://www.compart.com/en/unicode/U+25B3
@@ -3841,7 +3841,7 @@ FilledCircle:
 
 FilledDiamond:
   has-unicode-inverse: false
-  is-letter-like: false
+  is-letter-like: true
   unicode-equivalent: "\u25C6"
   unicode-equivalent-name: BLACK DIAMOND
   unicode-reference: https://www.compart.com/en/unicode/U+25C6

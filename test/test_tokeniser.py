@@ -191,6 +191,28 @@ def test_backslash_named_character():
     incomplete_error("\\")
 
 
+@pytest.mark.parametrize(
+    "name",
+    [
+        "EmptyCircle",
+        "EmptyDiamond",
+        "EmptyDownTriangle",
+        "EmptyRectangle",
+        "EmptySet",
+        "EmptySmallCircle",
+        "EmptySmallSquare",
+        "EmptySquare",
+        "EmptyUpTriangle",
+        "FilledDiamond",
+    ],
+)
+def test_letterlike_geometric_shapes(name):
+    r"""WMA documents these as "Letter-like form", so they can stand alone
+    as a symbol, e.g. Infix[t, \[EmptySmallCircle]]."""
+    assert tags(rf"\[{name}]") == ["Symbol"]
+    assert tags(rf"f[x, \[{name}]]") == tags("f[x, y]")
+
+
 def test_boxes():
     assert tokens("\\(1\\)") == [
         Token("LeftRowBox", "\\(", 0),
