@@ -117,11 +117,11 @@ def parse_escape_sequence(
         if i == len(source_text):
             # Note: named characters do not have \n's in them. (Is this right)?
             # FIXME: decide what to do here.
-            raise NamedCharacterSyntaxError("Syntax", "sntufn", source_text[pos:])
+            raise NamedCharacterSyntaxError("sntufn", source_text[pos:])
 
         named_character = parse_named_character(source_text, pos, i)
         if named_character is None:
-            raise NamedCharacterSyntaxError("Syntax", "sntufn", source_text[pos:i])
+            raise NamedCharacterSyntaxError("sntufn", source_text[pos:i])
 
         result += named_character
         pos = i + 1

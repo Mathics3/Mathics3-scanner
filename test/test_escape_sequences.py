@@ -57,6 +57,26 @@ def test_invalid_named_character_sequences():
             parse_escape_sequence(text, 1, is_in_string=False)
 
 
+@pytest.mark.parametrize(
+    ("text", "name"),
+    [
+        (r"\[Fake]", "Fake"),
+        (r"\[Alpha\]", "Alpha\\"),
+        (r"\[\Sigma]", "\\Sigma"),
+        (r"\[Theta", "Theta"),
+    ],
+)
+def test_invalid_named_character_message(text, name):
+    """The error carries the "sntufn" tag and the unknown name as its first argument,
+    which is what the Syntax::sntufn message template expects."""
+    with pytest.raises(NamedCharacterSyntaxError) as excinfo:
+        parse_escape_sequence(text, 1, is_in_string=False)
+    error = excinfo.value
+    assert error.name == "Syntax"
+    assert error.tag == "sntufn"
+    assert error.args[0] == name
+
+
 def test_invalid_number_encoding():
     for text in (
         # Octal
