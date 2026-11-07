@@ -8,8 +8,10 @@ for more information on character aliases.
 """
 import sys
 
-from mathics_scanner.characters import ALIASED_CHARACTERS
-from mathics_scanner.characters import replace_wl_with_plain_text as r
+from mathics_scanner.characters import (
+    ALIASED_CHARACTERS,
+    replace_wl_with_plain_text as r,
+)
 
 
 def _escape(s: str) -> str:
@@ -38,11 +40,11 @@ def generate_inputrc(fd=sys.stdout, use_unicode=True) -> None:
         try:
             fd.write(_format(alias, use_unicode))
         except UnicodeEncodeError:
-            sys.stderr.write("Error trying to convert alias %s; skipping\n" % alias)
+            sys.stderr.write(f"Error trying to convert alias {alias}; skipping\n")
 
 
 def usage():
-    sys.stderr.write("usage: %s {inputrc-unicode | inputrc-no-unicode}\n" % sys.argv[0])
+    sys.stderr.write(f"usage: {sys.argv[0]} {{inputrc-unicode | inputrc-no-unicode}}\n")
     sys.exit(1)
 
 
@@ -54,8 +56,7 @@ if __name__ == "__main__":
         default_encoding = sys.getdefaultencoding()
         if default_encoding != "utf-8":
             sys.stderr.write(
-                "sys.defaultencoding() is %s so we can't generate unicode output\n"
-                % (default_encoding)
+                f"sys.defaultencoding() is {default_encoding} so we can't generate unicode output\n"
             )
             sys.exit(2)
         generate_inputrc(use_unicode=True)

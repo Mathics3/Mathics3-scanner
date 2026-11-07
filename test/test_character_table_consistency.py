@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
-
 from test.helper import json_data, yaml_data
 
-from mathics_scanner.characters import replace_unicode_with_wl as unicode_to_wl
-from mathics_scanner.characters import replace_wl_with_plain_text as wl_to_unicode
+from mathics_scanner.characters import (
+    replace_unicode_with_wl as unicode_to_wl,
+    replace_wl_with_plain_text as wl_to_unicode,
+)
 
 
 def test_ascii_fields_in_json():
@@ -20,7 +20,7 @@ def test_ascii_fields_in_json():
         "operator-to-ascii",
         "operator-to-unicode",
     ):
-        for name in json_data[ascii_key_dict].keys():
+        for name in json_data[ascii_key_dict]:
             assert (
                 name.isascii()
             ), f"Key name of table {ascii_key_dict} should be ASCII; is: {name}"
